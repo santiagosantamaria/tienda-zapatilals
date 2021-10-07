@@ -8,6 +8,8 @@ namespace zapatillas_demo_1.Models
 		public int permisos { get; set; }
 
 		public Rol()
+		{
+		}
 
 	}
 
