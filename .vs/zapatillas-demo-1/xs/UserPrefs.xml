@@ -1,5 +1,5 @@
 ﻿<Properties StartupConfiguration="{22309AF1-9018-470E-9037-26679F6B4B32}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="zapatillas-demo-1/Models/Rol.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="zapatillas-demo-1/Views/Home/Index.cshtml">
     <Files>
       <File FileName="zapatillas-demo-1/Models/Producto.cs" Line="14" Column="19" />
       <File FileName="zapatillas-demo-1/Program.cs" Line="9" Column="1" />
@@ -7,7 +7,8 @@
       <File FileName="zapatillas-demo-1/appsettings.Development.json" Line="1" Column="1" />
       <File FileName="zapatillas-demo-1/Models/Usuario.cs" Line="1" Column="1" />
       <File FileName="zapatillas-demo-1/Models/Cliente.cs" Line="1" Column="1" />
-      <File FileName="zapatillas-demo-1/Models/Rol.cs" Line="1" Column="1" />
+      <File FileName="zapatillas-demo-1/Models/Rol.cs" Line="14" Column="3" />
+      <File FileName="zapatillas-demo-1/Views/Home/Index.cshtml" Line="9" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -17,10 +18,11 @@
               <Node name="Dependencies" expanded="True">
                 <Node name="PackageDependencies" expanded="True" />
               </Node>
-              <Node name="Models" expanded="True">
-                <Node name="Rol.cs" selected="True" />
+              <Node name="Views" expanded="True">
+                <Node name="Home" expanded="True">
+                  <Node name="Index.cshtml" selected="True" />
+                </Node>
               </Node>
-              <Node name="Views" expanded="True" />
               <Node name="appsettings.json" expanded="True" />
             </Node>
           </Node>
