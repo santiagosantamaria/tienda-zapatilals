@@ -1,0 +1,31 @@
+﻿<Properties StartupConfiguration="{22309AF1-9018-470E-9037-26679F6B4B32}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="zapatillas-demo-1/Models/Producto.cs">
+    <Files>
+      <File FileName="zapatillas-demo-1/Models/Producto.cs" Line="11" Column="17" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="zapatillas-demo-1" expanded="True">
+            <Node name="zapatillas-demo-1" expanded="True">
+              <Node name="Dependencies" selected="True" />
+              <Node name="Areas" expanded="True" />
+              <Node name="Controllers" expanded="True" />
+              <Node name="Models" expanded="True" />
+              <Node name="Properties" expanded="True" />
+              <Node name="Views" expanded="True" />
+              <Node name="appsettings.json" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.zapatillas-demo-1 FirstBuild="True" PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
