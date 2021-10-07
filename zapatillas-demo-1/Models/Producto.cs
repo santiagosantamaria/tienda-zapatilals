@@ -11,7 +11,7 @@ namespace zapatillas_demo_1.Models
         public float talle { get; set; }
         public String descripcion { get; set; }
         public float precio { get; set; }
-        public float en_stock { get; set; }
+        public int en_stock { get; set; }
 
 
         public Producto()
