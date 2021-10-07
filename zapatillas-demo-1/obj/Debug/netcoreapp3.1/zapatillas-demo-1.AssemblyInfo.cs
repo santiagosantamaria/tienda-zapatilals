@@ -11,6 +11,7 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.AspNetCore.Identity.UI.UIFrameworkAttribute("Bootstrap4")]
 [assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("aspnet-zapatillas_demo_1-17406FDF-64FB-409A-A199-7C0A30999262")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("zapatillas-demo-1")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
