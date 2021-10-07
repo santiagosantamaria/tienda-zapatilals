@@ -1,19 +1,22 @@
 ﻿<Properties StartupConfiguration="{22309AF1-9018-470E-9037-26679F6B4B32}|Default">
   <MonoDevelop.Ide.Workbench ActiveDocument="zapatillas-demo-1/Models/Producto.cs">
     <Files>
-      <File FileName="zapatillas-demo-1/Models/Producto.cs" Line="11" Column="17" />
+      <File FileName="zapatillas-demo-1/Models/Producto.cs" Line="23" Column="6" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="zapatillas-demo-1" expanded="True">
             <Node name="zapatillas-demo-1" expanded="True">
-              <Node name="Dependencies" selected="True" />
               <Node name="Areas" expanded="True" />
               <Node name="Controllers" expanded="True" />
+              <Node name="Data" expanded="True" selected="True">
+                <Node name="Migrations" expanded="True" />
+              </Node>
               <Node name="Models" expanded="True" />
               <Node name="Properties" expanded="True" />
               <Node name="Views" expanded="True" />
+              <Node name="wwwroot" expanded="True" />
               <Node name="appsettings.json" expanded="True" />
             </Node>
           </Node>
