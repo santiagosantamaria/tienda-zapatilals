@@ -26,11 +26,9 @@ namespace zapatillas1.zapatillas1
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //var connectionString = "connection string to database";
-            //services.AddDbContext<EshopDbContext>(ServiceLifetime.Scoped);
 
             services.AddControllersWithViews();
-            services.AddDbContext<EshopDbContext>(options=>options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<EshopDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
 
         }
 

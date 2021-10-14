@@ -14,19 +14,9 @@ namespace zapatillas1.Controllers
     public class HomeController : Controller
     {
 
-        // init the db context
-        //private EshopDbContext db = new EshopDbContext();
-
-        //private readonly ILogger<HomeController> _logger;
-
-        //public HomeController(ILogger<HomeController> logger)
-        //{
-        //    _logger = logger;
-        //}
-
         private readonly EshopDbContext db;
         public HomeController(EshopDbContext context)
-                {
+        {
             db = context;
         }
 
@@ -34,7 +24,6 @@ namespace zapatillas1.Controllers
         {
             ViewBag.name = "Jose";
             ViewBag.productos = db.Productos.ToList();
-            // return View();
 
             return View();
         }
