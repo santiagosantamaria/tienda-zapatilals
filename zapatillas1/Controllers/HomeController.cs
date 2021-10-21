@@ -25,6 +25,7 @@ namespace zapatillas1.Controllers
             ViewBag.name = "Jose";
             ViewBag.productos = db.Productos.ToList();
 
+
             return View();
         }
 
