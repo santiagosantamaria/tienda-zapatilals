@@ -4,19 +4,6 @@
 
 <div class="text-center">
     <h1 class="display-4">E-Shop Página Principal</h1>
-    <p>Hola @ViewBag.name</p>
-    <p>Nueva Version</p>
-
-    @foreach (var producto in ViewBag.productos)
-    {
-
-        <p>Producto: @producto.Descripcion</p>
-        <p>Talle: @producto.Talle</p>
-        <p>Precio: @producto.Precio</p>
-        <p>Precio: </p>
-        <a asp-action="VerProducto(@producto.Id)" asp-controller="ProductoController">Ver Producto</a>
-
-
-    }
-
+   
+   
 </div>

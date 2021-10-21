@@ -3,3 +3,22 @@
 }
 
 <h3>Pagina Productos</h3>
+
+<div class="text-center">
+    <h6 class="display-4">Listado</h6>
+    <p>Hola @ViewBag.name</p>
+    <p>Nueva Version</p>
+
+    @foreach (var producto in ViewBag.productos)
+    {
+
+    <p>Producto: @producto.Descripcion</p>
+    <p>Talle: @producto.Talle</p>
+    <p>Precio: @producto.Precio</p>
+    <p>Precio: </p>
+    <a asp-action="VerProducto(@producto.Id)" asp-controller="ProductoController">Ver Producto</a>
+
+
+    }
+
+</div>
