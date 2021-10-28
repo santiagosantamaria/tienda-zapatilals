@@ -14,21 +14,17 @@
 <div class="row">
         @foreach (var item in Model)
         {
-
-
-           
             <div class="col-lg-4">
-                <h2>@Html.DisplayFor(modelItem => item.Descripcion)</h2>
-                <img src="https://static.nike.com/a/images/f_auto/dpr_1.0/h_540,c_limit/3c3ba31c-fc7a-4068-8bfd-fa16f6525e10/nike-snkrs-calendario-de-fechas-de-lanzamientos.jpg">
-       
-            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-     
-       
-        </div>
+                <h4>@Html.DisplayFor(modelItem => item.Descripcion)</h4>
+                <img src="~/img/@Html.DisplayFor(modelItem => item.Foto)" class="foto-zapatilla">
+                <p>Precio @Html.DisplayFor(modelItem => item.Precio)</p>
+           
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>    
+             </div>
 
-    }
+         }
 </div>
 
 
