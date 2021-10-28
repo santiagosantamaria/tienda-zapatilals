@@ -8,8 +8,8 @@ namespace zapatillas1.zapatillas1.Models
         [Key]
         public int Id_usuario { get; set; }
         public int Id_rol { get; set; }
-        public String email { get; set; }
-        public String password { get; set; }
+        public string email { get; set; }
+        public string password { get; set; }
                             
     }
 }
