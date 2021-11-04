@@ -10,6 +10,8 @@ namespace zapatillas1.zapatillas1.Models
         public int Id_rol { get; set; }
         public string email { get; set; }
         public string password { get; set; }
-                            
+        
+        
+
     }
 }
