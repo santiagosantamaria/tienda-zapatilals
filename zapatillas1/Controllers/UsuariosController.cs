@@ -54,7 +54,7 @@ namespace zapatillas1.Models
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id_usuario,Id_rol,email,password")] Usuario usuario)
+        public async Task<IActionResult> Create([Bind("Id_usuario,Id_rol,Email,Password")] Usuario usuario)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace zapatillas1.Models
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id_usuario,Id_rol,email,password")] Usuario usuario)
+        public async Task<IActionResult> Edit(int id, [Bind("Id_usuario,Id_rol,Email,Password")] Usuario usuario)
         {
             if (id != usuario.Id_usuario)
             {

@@ -12,8 +12,8 @@ namespace zapatillas1.zapatillas1.Models
     public class Stock
     {
         [Key]
-        public int id_producto { get; set; }
-        public bool hay_stock { get; set; }
+        public int Id_producto { get; set; }
+        public bool Hay_stock { get; set; }
 
 
 
