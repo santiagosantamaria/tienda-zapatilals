@@ -9,7 +9,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace zapatillas1.zapatillas1.Models
 {
-    public class Cliente
+    public class Carrito
     {
 
         ArrayList CarritoProductos = new ArrayList();
