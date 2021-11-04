@@ -14,6 +14,7 @@ namespace zapatillas1.zapatillas1.Data
     {
         public DbSet<Producto> Productos { get; set; }
 
+        public DbSet<Usuario> Usuarios { get; set; }
 
         //    public string DbPath { get; private set; }
 
@@ -35,7 +36,10 @@ namespace zapatillas1.zapatillas1.Data
         //        => options.UseSqlite($"Data Source={DbPath}");
         //}
 
-        public EshopDbContext(DbContextOptions opciones) : base(opciones)        {        }
+        public EshopDbContext(DbContextOptions opciones) : base(opciones)
+        {
+
+        }
 
 
 
