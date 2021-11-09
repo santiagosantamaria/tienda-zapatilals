@@ -22,25 +22,38 @@ namespace zapatillas1.Controllers
         // GET: Productos
         public async Task<IActionResult> Index()
         {
+            // se necesita agrupar por talle para no repetir items
+            // ver eso !
             return View(await _context.Productos.ToListAsync());
         }
 
-        // GET: Productos/Details/5
+
+        // GET: Productos/Details/FAFSF
+        //public async Task<IActionResult> Details(string? codProducto)
         public async Task<IActionResult> Details(int? id)
         {
+            var CHECK_STOCK = 1;
+
             if (id == null)
             {
                 return NotFound();
             }
 
             var producto = await _context.Productos
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.Id == id && m.En_stock == CHECK_STOCK);
+
             if (producto == null)
             {
                 return NotFound();
             }
+            else
+            {
+                var talles = _context.Productos.Where(p => p.Cod_producto == producto.Cod_producto).ToList();
+                ViewBag.talles = talles;
+            }
 
             return View(producto);
+
         }
 
         // GET: Productos/Create

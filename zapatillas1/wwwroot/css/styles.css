@@ -1,7 +1,19 @@
-﻿.foto-index {
-    max-width: 300px;
+﻿body {
+  font-family: 'Raleway', sans-serif;
+}
+
+.foto-index {
+  max-width: 300px;
 }
 
 .foto-details {
-    max-width: 500px;
+  max-width: 500px;
+}
+
+.add-to-cart-btn {
+  padding-top: 1em;
+}
+
+.single-product {
+  margin-bottom: 0.5em;
 }

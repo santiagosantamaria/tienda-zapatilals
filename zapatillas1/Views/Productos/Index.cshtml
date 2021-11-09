@@ -12,23 +12,29 @@
 </p>
 
 <div class="row">
-        @foreach (var item in Model)
-        {
-    <div class="col-lg-4">
-        <h4>@Html.DisplayFor(modelItem => item.Descripcion)</h4>
-        <img src="~/img/@Html.DisplayFor(modelItem => item.Foto)" class="foto-index">
-        <p>Precio: $@Html.DisplayFor(modelItem => item.Precio)</p>
+    @foreach (var item in Model)
+    {
+        <div class="col-lg-4 single-product">
+            <h4>@Html.DisplayFor(modelItem => item.Descripcion)</h4>
+            <img src="~/img/@Html.DisplayFor(modelItem => item.Foto)" class="foto-index">
+            <p>Precio: $@Html.DisplayFor(modelItem => item.Precio)</p>
 
 
-        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-        <br />
-        <a asp-action="" asp-route-id="@item.Id">Agregar al carrito</a>
 
-    </div>
+            <a class="btn btn-success" asp-action="Details" asp-route-id="@item.Id">Ver Producto</a>
+            <br />
 
-         }
+            @* if User is admin *@
+
+            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+
+
+
+
+
+
+        </div>
+
+    }
 </div>
-
-
