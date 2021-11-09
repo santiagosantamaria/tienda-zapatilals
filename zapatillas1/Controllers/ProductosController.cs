@@ -22,8 +22,11 @@ namespace zapatillas1.Controllers
         // GET: Productos
         public async Task<IActionResult> Index()
         {
-            // se necesita agrupar por talle para no repetir items
-            // ver eso !
+            // agrupando por cod_producto para no repetir items
+            var productos = await _context.Productos.ToListAsync();
+            var productosPorCodigo = productos.GroupBy(x => x.Cod_producto).Select(g => g.First());
+            ViewBag.productosPorCodigo = productosPorCodigo;
+
             return View(await _context.Productos.ToListAsync());
         }
 

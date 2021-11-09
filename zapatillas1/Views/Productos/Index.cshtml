@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<zapatillas1.zapatillas1.Models.Producto>
 
+
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -12,29 +13,45 @@
 </p>
 
 <div class="row">
-    @foreach (var item in Model)
+
+    @foreach (var prod in ViewBag.productosPorCodigo)
     {
+
+        <div class="col-sm-12 col-md-6 col-lg-4 single-product">
+            <h4>@prod.Descripcion</h4>
+            <img src="~/img/@prod.Foto" class="foto-index">
+            <p>Precio: $ @prod.Precio</p>
+            <a class="btn btn-success" asp-action="Details" asp-route-id="@prod.Id">Ver Producto</a>
+
+            @* filter if admin *@
+            <a asp-action="Edit" asp-route-id="@prod.Id">Edit</a> |
+            <a asp-action="Delete" asp-route-id="@prod.Id">Delete</a>
+
+        </div>
+    }
+
+
+    <hr />
+
+    @* @foreach (var item in Model)
+        {
         <div class="col-lg-4 single-product">
-            <h4>@Html.DisplayFor(modelItem => item.Descripcion)</h4>
-            <img src="~/img/@Html.DisplayFor(modelItem => item.Foto)" class="foto-index">
-            <p>Precio: $@Html.DisplayFor(modelItem => item.Precio)</p>
 
+        <h4>@Html.DisplayFor(modelItem => item.Descripcion)</h4>
+        <img src="~/img/@Html.DisplayFor(modelItem => item.Foto)" class="foto-index">
+        <p>Precio: $@Html.DisplayFor(modelItem => item.Precio)</p>
 
+        <a class="btn btn-success" asp-action="Details" asp-route-id="@item.Id">Ver Producto</a>
+        <br />
 
-            <a class="btn btn-success" asp-action="Details" asp-route-id="@item.Id">Ver Producto</a>
-            <br />
+        @* if User is admin
 
-            @* if User is admin *@
-
-            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-
-
-
-
+        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
 
 
         </div>
 
-    }
+        } *@
+
 </div>

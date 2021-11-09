@@ -16,5 +16,6 @@ namespace zapatillas1.zapatillas1.Models
         public int En_stock { get; set; }
 
 
+
     }
 }
