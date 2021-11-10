@@ -23,9 +23,9 @@ namespace zapatillas1.Controllers
         public async Task<IActionResult> Index()
         {
             // agrupando por cod_producto para no repetir items
-            var productos = await _context.Productos.ToListAsync();
-            var productosPorCodigo = productos.GroupBy(x => x.Cod_producto).Select(g => g.First());
-            ViewBag.productosPorCodigo = productosPorCodigo;
+            var productos = await _context.Productos.ToListAsync(); //recibo una una lista de todos los productos (trae todo el modelo de la db)
+            var productosPorCodigo = productos.GroupBy(x => x.Cod_producto).Select(g => g.First()); //agrupo por codigo de producto (pero solo uno para no repetir foto, pues tengo varios productos con mismo codProducto pero dif talle)
+            ViewBag.productosPorCodigo = productosPorCodigo; //mando esta lista filtrada al viewBag. 
 
             return View(await _context.Productos.ToListAsync());
         }
