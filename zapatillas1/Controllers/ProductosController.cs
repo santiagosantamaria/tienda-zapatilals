@@ -33,7 +33,7 @@ namespace zapatillas1.Controllers
 
         // GET: Productos/Details/FAFSF
         //public async Task<IActionResult> Details(string? codProducto)
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int? id) //deberia recibir codProducto
         {
             var CHECK_STOCK = 1;
 
@@ -43,7 +43,7 @@ namespace zapatillas1.Controllers
             }
 
             var producto = await _context.Productos
-                .FirstOrDefaultAsync(m => m.Id == id && m.En_stock == CHECK_STOCK);
+                .FirstOrDefaultAsync(m => m.Id == id && m.En_stock == CHECK_STOCK); //guardo el primer producto que tenga el codProducto y este en stock
 
             if (producto == null)
             {
@@ -51,8 +51,8 @@ namespace zapatillas1.Controllers
             }
             else
             {
-                var talles = _context.Productos.Where(p => p.Cod_producto == producto.Cod_producto).ToList();
-                ViewBag.talles = talles;
+                var zapatillasXtalle = _context.Productos.Where(p => p.Cod_producto == producto.Cod_producto).ToList(); //agarro una lista de la zapatilla con este codigo de producto. 
+                ViewBag.talles = zapatillasXtalle;
             }
 
             return View(producto);
