@@ -55,7 +55,7 @@ namespace zapatillas1.Controllers
                 ViewBag.talles = zapatillasXtalle;
             }
 
-            return View(producto);
+            return View(producto); //en la vista en vez de agarrar id agarro codProducto
 
         }
 
