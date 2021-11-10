@@ -8,32 +8,36 @@
 
 <div class="container">
 
-    <div class="row align-items-start">
-        <div class="col-md-6">
-            <img src="~/img/@Html.DisplayFor(model => model.Foto)" class="foto-details">
-        </div>
-        <div class="col-md-6">
-            <div class="product-data">
-                <h2>@Html.DisplayFor(model => model.Descripcion)</h2>
-                <h3>Precio: $@Html.DisplayFor(model => model.Precio)</h3>
-            </div>
-            <div class="talles">
-                <p><span class="form-control-label">Talles Disponibles</span></p>
-                <select name="talle-zapa" id="talle-zapa">
-                    <option value=""> - Elegi tu talle - </option>
-                    @foreach (var item in @ViewBag.talles)
-                    {
-                        <option value="@item.Talle">@item.Talle</option>
-                    }
-                </select>
 
-                <div class="add-to-cart-btn">
-                    <button class="btn btn-success"> Agregar A Mi Bolsa!</button>
+    <div class="row align-items-start">
+        <div class="col-md-12">
+            <h2>@Html.DisplayFor(model => model.Descripcion)</h2>
+        </div>     
+            <div class="col-md-6">
+                <img src="~/img/@Html.DisplayFor(model => model.Foto)" class="foto-details">
+            </div>
+            <div class="col-md-6">
+                <div class="product-data">
+                    <h4>@Html.DisplayFor(model => model.Descripcion)</h4>
+                    <h3>Precio: $@Html.DisplayFor(model => model.Precio)</h3>
+                </div>
+                <div class="talles">
+                    <p><span class="form-control-label">Talles Disponibles</span></p>
+                    <select name="talle-zapa" id="talle-zapa">
+                        <option value=""> - Elegi tu talle - </option>
+                        @foreach (var item in @ViewBag.talles)
+                        {
+                            <option value="@item.Talle">@item.Talle</option>
+                        }
+                    </select>
+
+                    <div class="add-to-cart-btn">
+                        <button class="btn btn-success"> Agregar A Mi Bolsa!</button>
+                    </div>
+
+
+
                 </div>
 
-
-
             </div>
-
         </div>
-    </div>
