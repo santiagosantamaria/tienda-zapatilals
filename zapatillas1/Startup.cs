@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -27,9 +28,15 @@ namespace zapatillas1.zapatillas1
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(opciones =>
+            {
+                opciones.LoginPath = "/Usuario/Ingresar";
+                opciones.AccessDeniedPath = "/Usuario/AccesoDenegado";
+                opciones.LogoutPath = "/Usuario/Salir";
+            });
+
             services.AddControllersWithViews();
             services.AddDbContext<EshopDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,6 +54,8 @@ namespace zapatillas1.zapatillas1
 
             app.UseRouting();
 
+            app.UseAuthentication();
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -55,6 +64,9 @@ namespace zapatillas1.zapatillas1
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            app.UseCookiePolicy();
+
         }
     }
 }
