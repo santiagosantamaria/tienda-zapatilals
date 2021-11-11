@@ -7,7 +7,7 @@
 
 
 <div class="container">
-    
+
 
     <div class="row align-items-start">
         <div class="col-md-12">
@@ -32,13 +32,27 @@
                 </select>
 
                 <div class="add-to-cart-btn">
-                    <button class="btn btn-success"> Agregar A Mi Bolsa!</button>
+                    @* <a class="btn btn-success" href="~/Carrito/Add/@Html.DisplayFor(model => model.Id)"> Agregar A Mi
+                        Bolsa!</a> *@
+                    <a class="btn btn-success" id="link-agregar">
+                        Agregar A Mi Bolsa!</a>
                 </div>
 
-
+                <input type="text" id="cod-producto" hidden value="@Html.DisplayFor(model => model.Cod_producto)">
 
             </div>
 
         </div>
     </div>
 </div>
+
+<script>
+    document.getElementById('link-agregar').onclick = function () {
+        var talle = document.getElementById("talle-zapa").value;
+        var codProducto = document.getElementById("cod-producto").value;
+
+        window.location.href = "/Carrito/Add/" + codProducto + "-" + talle;
+
+    }
+
+</script>

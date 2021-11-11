@@ -21,7 +21,8 @@
             <h4>@prod.Descripcion</h4>
             <img src="~/img/@prod.Foto" class="foto-index">
             <p>Precio: $ @prod.Precio</p>
-            <a class="btn btn-success" asp-action="Details" asp-route-id="@prod.Id">Ver Producto</a>
+            @* <a class="btn btn-success" asp-action="Details" asp-route-id="@prod.Id">Ver Producto</a> *@
+            <a class="btn btn-success" asp-action="Details" asp-route-id="@prod.Cod_producto">Ver Producto</a>
             <!--cambie del boton que lo que manda es el cod producto en vez de prod.id-->
 
             @* filter if admin *@

@@ -20,18 +20,22 @@ namespace zapatillas1.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Add(int? id) //deberia recibir codProducto
+        // public async Task<IActionResult> Add(int? id)
+        // Cod_producto-Talle
+        public async Task<IActionResult> Add(string id)
         {
-            // estaria bueno que lo agregue a la sesion
-            
-            var itemSeleccion = await _context.Productos.FirstOrDefaultAsync(m => m.Id == id && m.En_stock == 1);
+            string[] ids = id.Split('-');
+
+            string codProducto = ids[0];
+            int talle = Int32.Parse(ids[1]);
+
+            var itemSeleccion = await _context.Productos.FirstOrDefaultAsync(m => m.Cod_producto == codProducto);
+
             ViewBag.itemSeleccion = itemSeleccion;
 
             return View();
 
         }
-
-
 
 
     }

@@ -33,9 +33,10 @@ namespace zapatillas1.Controllers
 
         // GET: Productos/Details/FAFSF
         //public async Task<IActionResult> Details(string? codProducto)
-        public async Task<IActionResult> Details(int? id) //deberia recibir codProducto.  (int? id) recibia antes
+        // public async Task<IActionResult> Details(int? id) //deberia recibir codProducto.  (int? id) recibia antes
+        public async Task<IActionResult> Details(string id)
         {
-            
+
             var CHECK_STOCK = 1;
 
             if (id == null)
@@ -44,7 +45,7 @@ namespace zapatillas1.Controllers
             }
 
             var producto = await _context.Productos
-                .FirstOrDefaultAsync(m => m.Id == id); //guardo el primer producto que tenga el id y este en stock
+                .FirstOrDefaultAsync(m => m.Cod_producto == id); //guardo el primer producto que tenga el id y este en stock
 
             if (producto == null)
             {
@@ -57,7 +58,7 @@ namespace zapatillas1.Controllers
             }
 
             return View(producto); //en la vista en vez de agarrar id agarro codProducto
-            
+
 
 
             /*
