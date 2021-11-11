@@ -24,7 +24,7 @@
             <div class="talles">
                 <p><span class="form-control-label">Talles Disponibles</span></p>
                 <select name="talle-zapa" id="talle-zapa">
-                    <option value=""> - Elegi tu talle - </option>
+                    <option value="ingrese-talle"> - Elegi tu talle - </option>
                     @foreach (var item in @ViewBag.talles)
                     {
                         <option value="@item.Talle">@item.Talle</option>
@@ -32,10 +32,9 @@
                 </select>
 
                 <div class="add-to-cart-btn">
-                    @* <a class="btn btn-success" href="~/Carrito/Add/@Html.DisplayFor(model => model.Id)"> Agregar A Mi
-                        Bolsa!</a> *@
-                    <a class="btn btn-success" id="link-agregar">
-                        Agregar A Mi Bolsa!</a>
+                    <a class="btn btn-success btn-white" id="link-agregar">
+                        Agregar A Mi Bolsa!
+                    </a>
                 </div>
 
                 <input type="text" id="cod-producto" hidden value="@Html.DisplayFor(model => model.Cod_producto)">
@@ -45,14 +44,3 @@
         </div>
     </div>
 </div>
-
-<script>
-    document.getElementById('link-agregar').onclick = function () {
-        var talle = document.getElementById("talle-zapa").value;
-        var codProducto = document.getElementById("cod-producto").value;
-
-        window.location.href = "/Carrito/Add/" + codProducto + "-" + talle;
-
-    }
-
-</script>
