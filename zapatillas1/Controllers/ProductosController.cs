@@ -31,6 +31,13 @@ namespace zapatillas1.Controllers
         }
 
 
+        // GET: Productos/Stock
+        public async Task<IActionResult> Stock()
+        {
+            
+            return View(await _context.Productos.ToListAsync());
+        }
+
         // GET: Productos/Details/FAFSF
         //public async Task<IActionResult> Details(string? codProducto)
         // public async Task<IActionResult> Details(int? id) //deberia recibir codProducto.  (int? id) recibia antes
@@ -95,6 +102,7 @@ namespace zapatillas1.Controllers
             */
         }
 
+        
         // GET: Productos/Create
         public IActionResult Create()
         {
