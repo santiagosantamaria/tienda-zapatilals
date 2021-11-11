@@ -52,7 +52,7 @@ namespace zapatillas1.Controllers
             }
 
             var producto = await _context.Productos
-                .FirstOrDefaultAsync(m => m.Cod_producto == id); //guardo el primer producto que tenga el id y este en stock
+                .FirstOrDefaultAsync(m => m.Cod_producto == id && m.En_stock == CHECK_STOCK); //guardo el primer producto que tenga el id y este en stock
 
             if (producto == null)
             {
