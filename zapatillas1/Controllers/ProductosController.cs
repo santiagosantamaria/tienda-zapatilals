@@ -33,8 +33,9 @@ namespace zapatillas1.Controllers
 
         // GET: Productos/Details/FAFSF
         //public async Task<IActionResult> Details(string? codProducto)
-        public async Task<IActionResult> Details(int? id) //deberia recibir codProducto
+        public async Task<IActionResult> Details(int? id) //deberia recibir codProducto.  (int? id) recibia antes
         {
+            
             var CHECK_STOCK = 1;
 
             if (id == null)
@@ -43,7 +44,7 @@ namespace zapatillas1.Controllers
             }
 
             var producto = await _context.Productos
-                .FirstOrDefaultAsync(m => m.Id == id && m.En_stock == CHECK_STOCK); //guardo el primer producto que tenga el codProducto y este en stock
+                .FirstOrDefaultAsync(m => m.Id == id); //guardo el primer producto que tenga el id y este en stock
 
             if (producto == null)
             {
@@ -56,7 +57,41 @@ namespace zapatillas1.Controllers
             }
 
             return View(producto); //en la vista en vez de agarrar id agarro codProducto
+            
 
+
+            /*
+             * 
+             * COMENTARIO: NO PUDE HACER QUE RECIBA UN String codProducto en vez de un id, con id funciona pero con String no. Creo que es por las rutas.
+            var CHECK_STOCK = 1;
+            
+            Console.WriteLine("hola");
+
+           
+
+            if (codProducto == null)
+            {
+                return NotFound();
+            }
+
+           
+            var producto = await _context.Productos
+                .FirstOrDefaultAsync(m => m.Cod_producto.Equals(codProducto)); //guardo el primer producto que tenga el codProducto (para mandarlo a la vista)
+
+            
+            
+            if (producto == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                var ZapatillasXtalle = await _context.Productos.Where(p => p.Cod_producto.Equals(codProducto) && p.En_stock == CHECK_STOCK).ToListAsync(); // Agarro del modelo una lista de zapattilas que tengan el codigo de producto recibido y tengan stock
+                ViewBag.talles = ZapatillasXtalle;
+            }
+
+            return View(producto);
+            */
         }
 
         // GET: Productos/Create

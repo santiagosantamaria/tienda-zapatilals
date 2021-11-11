@@ -14,6 +14,7 @@ namespace zapatillas1.zapatillas1.Models
         //no es un modelo, es una clase que nos sirve para logica.
         ArrayList CarritoProductos = new ArrayList();
 
+        //hacer el controlador y la vista del carrito
 
     }
 }
