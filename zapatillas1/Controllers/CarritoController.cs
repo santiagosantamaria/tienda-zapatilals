@@ -51,18 +51,13 @@ namespace zapatillas1.Controllers
 
         public async Task<IActionResult> Remover(int id)
         {
-            // NO ESTA FUNCIONANDO - Ver el remove de carrito
-
-            var itemSeleccion = await _context.Productos.FirstOrDefaultAsync(m => m.Id == id);
-            Carrito.removeItem(itemSeleccion);
-
+            Carrito.removeItem(id);
             return RedirectToAction(nameof(Ver));
         }
 
         public async Task<IActionResult> Finalizar()
         {
-
-            return View(TempData["cart-items"]);
+            return View();
         }
 
 

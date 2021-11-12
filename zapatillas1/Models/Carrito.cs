@@ -13,14 +13,24 @@ namespace zapatillas1.zapatillas1.Models
     {
 
         public static ArrayList ListaProductos = new ArrayList();
+        public static ArrayList ListaStock = new ArrayList();
 
-        public static void addItem(Producto producto)
+        public static void addItem(int idProducto)
         {
-            ListaProductos.Add(producto);
+            Producto producto = Carrito.buscarProducto(idProducto);
+            if (producto == null)
+            {
+                ListaProductos.Add(producto);
+            }
         }
-        public static void removeItem(Producto producto)
+        public static void removeItem(int idProducto)
         {
-            ListaProductos.Remove(producto);
+            Producto producto = Carrito.buscarProducto(idProducto);
+
+            if (producto != null)
+            {
+                ListaProductos.Remove(producto);
+            }
         }
         public static float getPrecioTotalItems()
         {
@@ -30,6 +40,22 @@ namespace zapatillas1.zapatillas1.Models
                 total += item.Precio;
             }
             return total;
+        }
+
+
+        public static Producto buscarProducto(int id)
+        {
+            Producto prodBuscado = null;
+            foreach (Producto item in ListaProductos)
+            {
+                if (item.Id == id)
+                {
+                    prodBuscado = item;
+                }
+            }
+
+            return prodBuscado;
+
         }
 
 
