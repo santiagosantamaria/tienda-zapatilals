@@ -22,10 +22,8 @@ namespace zapatillas1.Controllers
 
         public IActionResult Index()
         {
-            ViewBag.name = "Jose";
+
             ViewBag.productos = db.Productos.ToList();
-
-
             return View();
         }
 

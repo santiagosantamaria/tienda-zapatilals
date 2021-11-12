@@ -27,6 +27,16 @@ namespace zapatillas1.zapatillas1
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSession();
+
+            services.AddDistributedMemoryCache();
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromSeconds(10);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(opciones =>
             {
@@ -54,7 +64,9 @@ namespace zapatillas1.zapatillas1
 
             app.UseRouting();
 
-            app.UseAuthentication();
+            app.UseAuthentication();        
+
+            app.UseSession();
 
             app.UseAuthorization();
 
