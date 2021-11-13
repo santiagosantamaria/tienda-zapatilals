@@ -31,16 +31,17 @@ namespace zapatillas1.Models
         }
 
         [HttpPost]
-        public async Task<IActionResult> Ingresar(string usuario, string pass)
+        public async Task<IActionResult> Ingresar(string email, string pass)
         {
             //GUARDAMOS LA URL A LA QUE DEBEMOS REDIGIRIR AL USUARIO
-            var urlIngreso = TempData["UrlIngreso"] as string;
+            // var urlIngreso = TempData["UrlIngreso"] as string;
+            var urlIngreso = "Index";
 
             //Verifivamos que ambos estén informados
-            if (!string.IsNullOrEmpty(usuario) && !string.IsNullOrEmpty(pass))
+            if (!string.IsNullOrEmpty(email) && !string.IsNullOrEmpty(pass))
             {
                 //Verificamos que existe el usuario
-                var user =  _context.Usuarios.FirstOrDefault(u => u.Email == usuario);
+                var user = _context.Usuarios.FirstOrDefault(u => u.Email == email);
 
                 if (user != null)
                 {
@@ -52,7 +53,7 @@ namespace zapatillas1.Models
                         ClaimsIdentity identidad = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme);
 
                         //Agregamos la credencial el nombre de usuario
-                        identidad.AddClaim(new Claim(ClaimTypes.Name, usuario));
+                        identidad.AddClaim(new Claim(ClaimTypes.Name, user.Email));
 
                         //Agregamos la credencial el nombre del admin
                         identidad.AddClaim(new Claim(ClaimTypes.GivenName, user.Email));
@@ -67,6 +68,7 @@ namespace zapatillas1.Models
 
                         if (!string.IsNullOrEmpty(urlIngreso))
                         {
+                            TempData["is_admin"] = true;
                             return Redirect(urlIngreso);
                         }
                         else
@@ -102,7 +104,16 @@ namespace zapatillas1.Models
             return View();
         }
 
-        public IActionResult Registrarse()
+        // public IActionResult Registrarse()
+        // {
+
+        //     if (TempData["is_admin"].Equals("is_admin"))
+        //     {
+        //         return View();
+        //     }
+
+        // }
+        public IActionResult Login()
         {
             return View();
         }
@@ -124,7 +135,7 @@ namespace zapatillas1.Models
             return View(usuario);
         }
 
-       // private int biggestId
+        // private int biggestId
 
         // GET: Usuarios
         public async Task<IActionResult> Index()
