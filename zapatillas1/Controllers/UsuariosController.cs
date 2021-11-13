@@ -113,6 +113,7 @@ namespace zapatillas1.Models
         //     }
 
         // }
+        [Authorize]
         public IActionResult Registrarse()
         {
             return View();
@@ -120,6 +121,7 @@ namespace zapatillas1.Models
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Registrarse(Usuario usuario, string pass)
         {
             if (ModelState.IsValid)
