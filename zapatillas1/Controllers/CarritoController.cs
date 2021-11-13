@@ -25,8 +25,6 @@ namespace zapatillas1.Controllers
 
 
 
-        // public async Task<IActionResult> Add(int? id)
-        // Cod_producto-Talle
         public async Task<IActionResult> Add(string id)
         {
 
@@ -36,13 +34,6 @@ namespace zapatillas1.Controllers
             int talle = Int32.Parse(ids[1]);
 
             Carrito.agregarProductoAlCarrito(codProducto, talle);
-
-            /*
-            var itemSeleccion = await _context.Productos.FirstOrDefaultAsync(m => m.Cod_producto == codProducto);
-
-            ViewBag.itemSeleccion = itemSeleccion;
-            Carrito.ListaProductos.Add(itemSeleccion);
-            */
 
             return RedirectToAction(nameof(Ver));
 
@@ -68,8 +59,6 @@ namespace zapatillas1.Controllers
 
             //   buscar en la bd la zapatilla que tenga ese talle y ese codProducto y restarle 1 a la cantidad
 
-
-
             Carrito.primeraVez = true;
 
             return RedirectToAction(nameof(Ver));
@@ -77,7 +66,6 @@ namespace zapatillas1.Controllers
 
         public async Task<IActionResult> Remover(int id)
         {
-            // Carrito.removeItem(id);
             Carrito.removerProducto(id, Carrito.bolsaCompra);
             return RedirectToAction(nameof(Ver));
         }

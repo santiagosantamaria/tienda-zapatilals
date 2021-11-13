@@ -21,14 +21,18 @@
                 <h4>@Html.DisplayFor(model => model.Descripcion)</h4>
                 <h3>Precio: $@Html.DisplayFor(model => model.Precio)</h3>
             </div>
+
             <div class="talles">
                 <p><span class="form-control-label">Talles Disponibles</span></p>
+
                 <select name="talle-zapa" id="talle-zapa">
                     <option value="ingrese-talle"> - Elegi tu talle - </option>
+
                     @foreach (var item in @ViewBag.talles)
                     {
-                        <option value="@item.Talle">@item.Talle</option>
+                        <option value="@item">@item</option>
                     }
+
                 </select>
 
                 <div class="add-to-cart-btn">

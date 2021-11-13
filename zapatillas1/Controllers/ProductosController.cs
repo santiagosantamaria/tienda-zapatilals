@@ -46,7 +46,7 @@ namespace zapatillas1.Controllers
                     Carrito.ListaStock.Add(item);
                 }
 
-                primeraVez = false;
+                Carrito.primeraVez = false;
 
             }
 
@@ -67,8 +67,8 @@ namespace zapatillas1.Controllers
 
         // GET: Productos/Details/FAFSF
         //public async Task<IActionResult> Details(string? codProducto)
-        // public async Task<IActionResult> Details(int? id) //deberia recibir codProducto.  (int? id) recibia antes
-        public async Task<IActionResult> Details(string id)
+
+        public async Task<IActionResult> Details(String id)
         {
 
             String codBuscado = id;
@@ -78,19 +78,24 @@ namespace zapatillas1.Controllers
                 return NotFound();
             }
 
-            ArrayList productosPorCodigo = Carrito.buscarProductoPorCodigo(codBuscado, Carrito.ListaStock);
-            Producto producto = (Producto)productosPorCodigo[0];
+            // Error - Trae Uno Solo Porque ?
+            List<Producto> productosPorCodigo = Carrito.buscarProductoPorCodigo(codBuscado);
 
-            if (producto == null)
+            if (productosPorCodigo == null)
             {
                 return NotFound();
             }
-            else
+
+            List<float> talles = new List<float>();
+
+            foreach (Producto p in productosPorCodigo)
             {
-                ViewBag.talles = productosPorCodigo;
+                talles.Add(p.Talle);
             }
 
-            //en la vista en vez de agarrar id agarro codProducto
+            ViewBag.talles = talles;
+
+            Producto producto = productosPorCodigo[0];
             return View(producto);
 
 

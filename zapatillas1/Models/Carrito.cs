@@ -26,7 +26,9 @@ namespace zapatillas1.zapatillas1.Models
                 if (producto.Cantidad > 0)
                 {
                     bolsaCompra.Add(producto);
-                    producto.Cantidad--; //le resto en el stock una cantidad
+
+                    //le resto en el stock una cantidad
+                    producto.Cantidad--;
                 }
 
             }
@@ -87,23 +89,20 @@ namespace zapatillas1.zapatillas1.Models
 
             return productobuscado;
         }
-        public static ArrayList buscarProductoPorCodigo(String codigo, ArrayList lista)
+
+
+        public static List<Producto> buscarProductoPorCodigo(String codigo)
         {
-            ArrayList productosPorCodigo = new ArrayList();
+            List<Producto> productosPorCodigo = new List<Producto>();
 
-            int i = 0;
-            while (i < lista.Count)
+            foreach (Producto p in Carrito.ListaStock)
             {
-                Producto productoActual = (Producto)lista[i];
-
-                if (productoActual.Cod_producto.Equals(codigo) && productoActual.Cantidad > 0)
+                if (p.Cantidad > 0 && p.Cod_producto.Equals(codigo))
                 {
-                    productosPorCodigo.Add(productoActual);
+                    productosPorCodigo.Add(p);
                 }
-
-                i++;
-
             }
+
 
             return productosPorCodigo;
         }
@@ -117,9 +116,6 @@ namespace zapatillas1.zapatillas1.Models
             }
             return total;
         }
-
-
-
 
     }
 }
