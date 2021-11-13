@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -70,15 +71,15 @@ namespace zapatillas1.Controllers
         public async Task<IActionResult> Details(string id)
         {
 
-            var CHECK_STOCK = 1;
+            String codBuscado = id;
 
-            if (id == null)
+            if (codBuscado == null)
             {
                 return NotFound();
             }
 
-            var producto = await _context.Productos
-                .FirstOrDefaultAsync(m => m.Cod_producto == id && m.En_stock == CHECK_STOCK); //guardo el primer producto que tenga el id y este en stock
+            ArrayList productosPorCodigo = Carrito.buscarProductoPorCodigo(codBuscado, Carrito.ListaStock);
+            Producto producto = (Producto)productosPorCodigo[0];
 
             if (producto == null)
             {
@@ -86,12 +87,11 @@ namespace zapatillas1.Controllers
             }
             else
             {
-
-                var zapatillasXtalle = _context.Productos.Where(p => p.Cod_producto == producto.Cod_producto).ToList(); //agarro una lista de la zapatilla con este codigo de producto. 
-                ViewBag.talles = zapatillasXtalle;
+                ViewBag.talles = productosPorCodigo;
             }
 
-            return View(producto); //en la vista en vez de agarrar id agarro codProducto
+            //en la vista en vez de agarrar id agarro codProducto
+            return View(producto);
 
 
         }

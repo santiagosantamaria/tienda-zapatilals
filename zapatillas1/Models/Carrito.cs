@@ -19,42 +19,42 @@ namespace zapatillas1.zapatillas1.Models
         public static void agregarProductoAlCarrito(String codProducto, int talle)
         {
             Producto producto = buscarProducto(codProducto, talle, ListaStock);
-           
 
-            if(producto != null )
+
+            if (producto != null)
             {
-                if(producto.Cantidad > 0)
+                if (producto.Cantidad > 0)
                 {
                     bolsaCompra.Add(producto);
                     producto.Cantidad--; //le resto en el stock una cantidad
                 }
-  
+
             }
         }
 
-      
+
         public static void removerProducto(int id, ArrayList lista)
         {
             Producto producto = buscarProducto(id, lista);
 
-            if(producto != null)
+            if (producto != null)
             {
                 bolsaCompra.Remove(producto);
                 producto.Cantidad++;
             }
 
         }
-        
+
 
         public static Producto buscarProducto(String codProducto, int talle, ArrayList lista)
         {
             int i = 0;
-            Producto productobuscado = null ;
+            Producto productobuscado = null;
             while (i < lista.Count && productobuscado == null)
             {
-                Producto productoActual = (Producto) lista[i];
+                Producto productoActual = (Producto)lista[i];
 
-                if(productoActual.Cod_producto.Equals(codProducto) && productoActual.Talle == talle)
+                if (productoActual.Cod_producto.Equals(codProducto) && productoActual.Talle == talle)
                 {
                     productobuscado = productoActual;
                 }
@@ -86,6 +86,26 @@ namespace zapatillas1.zapatillas1.Models
             }
 
             return productobuscado;
+        }
+        public static ArrayList buscarProductoPorCodigo(String codigo, ArrayList lista)
+        {
+            ArrayList productosPorCodigo = new ArrayList();
+
+            int i = 0;
+            while (i < lista.Count)
+            {
+                Producto productoActual = (Producto)lista[i];
+
+                if (productoActual.Cod_producto.Equals(codigo) && productoActual.Cantidad > 0)
+                {
+                    productosPorCodigo.Add(productoActual);
+                }
+
+                i++;
+
+            }
+
+            return productosPorCodigo;
         }
 
         public static float getPrecioTotalItems()
