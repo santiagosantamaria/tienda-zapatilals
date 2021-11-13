@@ -6,6 +6,10 @@
   max-width: 300px;
 }
 
+.foto-stock {
+  max-width: 90%;
+}
+
 .foto-details {
   max-width: 80%;
 }

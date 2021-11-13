@@ -12,32 +12,52 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Stock</h1>
+<h1>Editar Stock</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">+ Agregar Producto</a>
 </p>
+<hr />
 
 <div class="row">
 
-   
-
-     @foreach (var item in Model)
-        {
-        <div class="col-lg-4 single-product">
-
-        <h4>@Html.DisplayFor(modelItem => item.Descripcion)</h4>
-        <img src="~/img/@Html.DisplayFor(modelItem => item.Foto)" class="foto-index">
-        <p>Precio: $@Html.DisplayFor(modelItem => item.Precio)</p>
-
-        <br />
-
-        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
 
 
+    @foreach (var item in Model)
+    {
+        @* <div class="card">
+            <div class="col-md-3 single-product card-body">
+
+            <h4>@Html.DisplayFor(modelItem => item.Descripcion)</h4>
+            <p>Talle @Html.DisplayFor(modelItem => item.Talle)</p>
+            <p>Precio: $@Html.DisplayFor(modelItem => item.Precio)</p>
+            <img src="~/img/@Html.DisplayFor(modelItem => item.Foto)" class="foto-stock">
+
+
+            <br />
+
+            <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+            <a asp-action="Delete" asp-route-id="@item.Id">Borrar</a>
+
+
+            </div>
+            </div> *@
+
+        <div class="card" style="width: 25%;">
+            <div class="card-body">
+                <h5 class="card-title">@Html.DisplayFor(modelItem => item.Descripcion)</h5>
+                <h6 class="card-subtitle mb-2">Talle @Html.DisplayFor(modelItem => item.Talle)</h6>
+                <h6 class="card-subtitle mb-2">Precio: $ @Html.DisplayFor(modelItem => item.Precio)</h6>
+                <hr />
+                <h5 class="card-subtitle mb-2">Cant. en Stock: @Html.DisplayFor(modelItem => item.Cantidad)</h5>
+
+                <img src="~/img/@Html.DisplayFor(modelItem => item.Foto)" class="foto-stock">
+                <br />
+                <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Borrar</a>
+            </div>
         </div>
 
-        } 
+    }
 
 </div>

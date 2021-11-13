@@ -12,6 +12,8 @@ document.getElementById('link-agregar').onclick = function () {
     } else {
         var codProducto = document.getElementById("cod-producto").value;
         window.location.href = "/Carrito/Add/" + codProducto + "-" + talle;
+
+        console.log("PROD: "+codProducto + "- TALLE:  " + talle)
     }
         
 };

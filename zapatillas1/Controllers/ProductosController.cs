@@ -10,6 +10,7 @@ using zapatillas1.zapatillas1.Data;
 using zapatillas1.zapatillas1.Models;
 using static zapatillas1.zapatillas1.Models.Carrito;
 
+
 namespace zapatillas1.Controllers
 {
     public class ProductosController : Controller
@@ -37,6 +38,8 @@ namespace zapatillas1.Controllers
                 var productos = await _context.Productos.ToListAsync();
 
                 //agrupo por codigo de producto (pero solo uno para no repetir foto, pues tengo varios productos con mismo codProducto pero dif talle)
+                // Hay un error con el select
+                // No esta enviando Todos los productos del stock a la lista ListaStock
                 var productosPorCodigo = productos.Where(p => p.Cantidad > 0).GroupBy(x => x.Cod_producto).Select(g => g.First());
 
                 Carrito.ListaStock.Clear();
@@ -78,7 +81,9 @@ namespace zapatillas1.Controllers
                 return NotFound();
             }
 
-            // Error - Trae Uno Solo Porque ?
+            var totalTalles = _context.Productos.FromSqlRaw("Select Id, Cod_producto, Foto, Cantidad, Talle, Descripcion, Precio, En_stock from Productos where Cantidad > 0 GROUP by Cod_producto,Talle")
+            .ToList().Where(p => p.Cod_producto.Equals(codBuscado));
+
             List<Producto> productosPorCodigo = Carrito.buscarProductoPorCodigo(codBuscado);
 
             if (productosPorCodigo == null)
@@ -86,14 +91,7 @@ namespace zapatillas1.Controllers
                 return NotFound();
             }
 
-            List<float> talles = new List<float>();
-
-            foreach (Producto p in productosPorCodigo)
-            {
-                talles.Add(p.Talle);
-            }
-
-            ViewBag.talles = talles;
+            ViewBag.totalTalles = totalTalles;
 
             Producto producto = productosPorCodigo[0];
             return View(producto);
@@ -142,8 +140,6 @@ namespace zapatillas1.Controllers
         }
 
         // POST: Productos/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Cod_producto,Foto,Cantidad,Talle,Descripcion,Precio,En_stock")] Producto producto)

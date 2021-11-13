@@ -5,6 +5,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<ul>
+    @* Debug *@
+    @* @foreach (var item in @ViewBag.totalTalles)
+        {
+        <li>@item.Talle</li>
+        <li>@item.Cod_producto</li>
+        } *@
+</ul>
 
 <div class="container">
 
@@ -27,12 +35,11 @@
 
                 <select name="talle-zapa" id="talle-zapa">
                     <option value="ingrese-talle"> - Elegi tu talle - </option>
-
-                    @foreach (var item in @ViewBag.talles)
+                    @foreach (var item in @ViewBag.totalTalles)
                     {
-                        <option value="@item">@item</option>
-                    }
+                        <option value="@item.Talle">@item.Talle</option>
 
+                    }
                 </select>
 
                 <div class="add-to-cart-btn">
