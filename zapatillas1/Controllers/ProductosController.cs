@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using zapatillas1.zapatillas1.Data;
 using zapatillas1.zapatillas1.Models;
+using static zapatillas1.zapatillas1.Models.Carrito;
 
 namespace zapatillas1.Controllers
 {
@@ -22,11 +23,26 @@ namespace zapatillas1.Controllers
         // GET: Productos
         public async Task<IActionResult> Index()
         {
+
+            
+            //PARA LA VISTA
             // agrupando por cod_producto para no repetir items
             var productos = await _context.Productos.ToListAsync(); //recibo una una lista de todos los productos (trae todo el modelo de la db)
             var productosPorCodigo = productos.GroupBy(x => x.Cod_producto).Select(g => g.First()); //agrupo por codigo de producto (pero solo uno para no repetir foto, pues tengo varios productos con mismo codProducto pero dif talle)
             ViewBag.productosPorCodigo = productosPorCodigo; //mando esta lista filtrada al viewBag. 
 
+            if(Carrito.primeraVez)
+            {
+                Carrito.primeraVez = false;
+                //para manejar el carrito utilizamos lista estaticas (para que duren con la sesion) y al finalizar la compra sincronizamos estas listas con la BD.
+                foreach (Producto item in productos)
+                {
+                    Carrito.ListaStock.Add(item);
+                }
+            }
+            
+
+       
             return View(await _context.Productos.ToListAsync());
         }
 

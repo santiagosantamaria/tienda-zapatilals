@@ -12,30 +12,86 @@ namespace zapatillas1.zapatillas1.Models
     public static class Carrito
     {
 
-        public static ArrayList ListaProductos = new ArrayList();
+        public static ArrayList bolsaCompra = new ArrayList();
         public static ArrayList ListaStock = new ArrayList();
+        public static Boolean primeraVez = true;
 
-        public static void addItem(int idProducto)
+        public static void agregarProductoAlCarrito(String codProducto, int talle)
         {
-            Producto producto = Carrito.buscarProducto(idProducto);
-            if (producto == null)
+            Producto producto = buscarProducto(codProducto, talle, ListaStock);
+           
+
+            if(producto != null )
             {
-                ListaProductos.Add(producto);
+                if(producto.Cantidad > 0)
+                {
+                    bolsaCompra.Add(producto);
+                    producto.Cantidad--; //le resto en el stock una cantidad
+                }
+  
             }
         }
-        public static void removeItem(int idProducto)
-        {
-            Producto producto = Carrito.buscarProducto(idProducto);
 
-            if (producto != null)
+      
+        public static void removerProducto(int id, ArrayList lista)
+        {
+            Producto producto = buscarProducto(id, lista);
+
+            if(producto != null)
             {
-                ListaProductos.Remove(producto);
+                bolsaCompra.Remove(producto);
+                producto.Cantidad++;
             }
+
         }
+        
+
+        public static Producto buscarProducto(String codProducto, int talle, ArrayList lista)
+        {
+            int i = 0;
+            Producto productobuscado = null ;
+            while (i < lista.Count && productobuscado == null)
+            {
+                Producto productoActual = (Producto) lista[i];
+
+                if(productoActual.Cod_producto.Equals(codProducto) && productoActual.Talle == talle)
+                {
+                    productobuscado = productoActual;
+                }
+                else
+                {
+                    i++;
+                }
+            }
+
+            return productobuscado;
+        }
+
+        public static Producto buscarProducto(int id, ArrayList lista)
+        {
+            int i = 0;
+            Producto productobuscado = null;
+            while (i < lista.Count && productobuscado == null)
+            {
+                Producto productoActual = (Producto)lista[i];
+
+                if (productoActual.Id == id)
+                {
+                    productobuscado = productoActual;
+                }
+                else
+                {
+                    i++;
+                }
+            }
+
+            return productobuscado;
+        }
+
         public static float getPrecioTotalItems()
         {
             float total = 0;
-            foreach (Producto item in ListaProductos)
+            foreach (Producto item in bolsaCompra)
             {
                 total += item.Precio;
             }
@@ -43,23 +99,55 @@ namespace zapatillas1.zapatillas1.Models
         }
 
 
-        public static Producto buscarProducto(int id)
-        {
-            Producto prodBuscado = null;
-            foreach (Producto item in ListaProductos)
-            {
-                if (item.Id == id)
-                {
-                    prodBuscado = item;
-                }
-            }
-
-            return prodBuscado;
-
-        }
-
 
 
     }
-
 }
+
+/*
+       public static void addItem(int idProducto)
+       {
+           Producto producto = Carrito.buscarProducto(idProducto);
+           if (producto == null)
+           {
+               ListaProductos.Add(producto);
+           }
+       }
+       public static void removeItem(int idProducto)
+       {
+           Producto producto = Carrito.buscarProducto(idProducto);
+
+           if (producto != null)
+           {
+               ListaProductos.Remove(producto);
+           }
+       }
+       public static float getPrecioTotalItems()
+       {
+           float total = 0;
+           foreach (Producto item in ListaProductos)
+           {
+               total += item.Precio;
+           }
+           return total;
+       }
+
+
+       public static Producto buscarProducto(int id)
+       {
+           Producto prodBuscado = null;
+           foreach (Producto item in ListaProductos)
+           {
+               if (item.Id == id)
+               {
+                   prodBuscado = item;
+               }
+           }
+
+           return prodBuscado;
+
+       }
+
+
+
+   }*/
