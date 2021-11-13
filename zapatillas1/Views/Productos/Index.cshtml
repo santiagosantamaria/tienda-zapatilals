@@ -20,9 +20,9 @@
             <p>Precio: $ @prod.Precio</p>
             @* <a class="btn btn-success" asp-action="Details" asp-route-id="@prod.Id">Ver Producto</a> *@
             <a class="btn btn-success" asp-action="Details" asp-route-id="@prod.Cod_producto">Ver Producto</a>
-            <!--cambie del boton que lo que manda es el cod producto en vez de prod.id-->
 
-            
+
+
 
         </div>
     }
@@ -30,25 +30,6 @@
 
     <hr />
 
-    @* @foreach (var item in Model)
-        {
-        <div class="col-lg-4 single-product">
 
-        <h4>@Html.DisplayFor(modelItem => item.Descripcion)</h4>
-        <img src="~/img/@Html.DisplayFor(modelItem => item.Foto)" class="foto-index">
-        <p>Precio: $@Html.DisplayFor(modelItem => item.Precio)</p>
-
-        <a class="btn btn-success" asp-action="Details" asp-route-id="@item.Id">Ver Producto</a>
-        <br />
-
-        @* if User is admin
-
-        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-
-
-        </div>
-
-        } *@
 
 </div>

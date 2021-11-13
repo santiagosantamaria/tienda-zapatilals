@@ -27,23 +27,33 @@ namespace zapatillas1.Controllers
 
             //PARA LA VISTA
             // agrupando por cod_producto para no repetir items
-            var productos = await _context.Productos.ToListAsync(); //recibo una una lista de todos los productos (trae todo el modelo de la db)
-            var productosPorCodigo = productos.Where(p => p.Cantidad > 0).GroupBy(x => x.Cod_producto).Select(g => g.First()); //agrupo por codigo de producto (pero solo uno para no repetir foto, pues tengo varios productos con mismo codProducto pero dif talle)
-            ViewBag.productosPorCodigo = productosPorCodigo; //mando esta lista filtrada al viewBag. 
 
             if (Carrito.primeraVez)
             {
-                primeraVez = false;
+
                 //para manejar el carrito utilizamos lista estaticas (para que duren con la sesion) y al finalizar la compra sincronizamos estas listas con la BD.
-                foreach (Producto item in productos)
+                //recibo una una lista de todos los productos (trae todo el modelo de la db)
+                var productos = await _context.Productos.ToListAsync();
+
+                //agrupo por codigo de producto (pero solo uno para no repetir foto, pues tengo varios productos con mismo codProducto pero dif talle)
+                var productosPorCodigo = productos.Where(p => p.Cantidad > 0).GroupBy(x => x.Cod_producto).Select(g => g.First());
+
+                Carrito.ListaStock.Clear();
+
+                foreach (Producto item in productosPorCodigo)
                 {
                     Carrito.ListaStock.Add(item);
                 }
+
+                primeraVez = false;
+
             }
 
+            //mando esta lista filtrada al viewBag. 
+            ViewBag.productosPorCodigo = Carrito.ListaStock;
 
-
-            return View(await _context.Productos.ToListAsync());
+            return View();
+            // return View(await _context.Productos.ToListAsync());
         }
 
 
@@ -76,6 +86,7 @@ namespace zapatillas1.Controllers
             }
             else
             {
+
                 var zapatillasXtalle = _context.Productos.Where(p => p.Cod_producto == producto.Cod_producto).ToList(); //agarro una lista de la zapatilla con este codigo de producto. 
                 ViewBag.talles = zapatillasXtalle;
             }
