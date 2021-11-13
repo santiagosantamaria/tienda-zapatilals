@@ -28,12 +28,12 @@ namespace zapatillas1.Controllers
             //PARA LA VISTA
             // agrupando por cod_producto para no repetir items
             var productos = await _context.Productos.ToListAsync(); //recibo una una lista de todos los productos (trae todo el modelo de la db)
-            var productosPorCodigo = productos.GroupBy(x => x.Cod_producto).Select(g => g.First()); //agrupo por codigo de producto (pero solo uno para no repetir foto, pues tengo varios productos con mismo codProducto pero dif talle)
+            var productosPorCodigo = productos.Where(p=> p.Cantidad >0).GroupBy(x => x.Cod_producto).Select(g => g.First()); //agrupo por codigo de producto (pero solo uno para no repetir foto, pues tengo varios productos con mismo codProducto pero dif talle)
             ViewBag.productosPorCodigo = productosPorCodigo; //mando esta lista filtrada al viewBag. 
 
             if(Carrito.primeraVez)
             {
-                Carrito.primeraVez = false;
+                primeraVez = false;
                 //para manejar el carrito utilizamos lista estaticas (para que duren con la sesion) y al finalizar la compra sincronizamos estas listas con la BD.
                 foreach (Producto item in productos)
                 {
@@ -142,6 +142,7 @@ namespace zapatillas1.Controllers
                 {
                     _context.Update(producto);
                     await _context.SaveChangesAsync();
+                    Carrito.primeraVez = true;
                 }
                 catch (DbUpdateConcurrencyException)
                 {

@@ -53,6 +53,28 @@ namespace zapatillas1.Controllers
             return View();
         }
 
+        public async Task<IActionResult> Finalizar()
+        {
+            for(int i = 0; i<Carrito.bolsaCompra.Count; i++)
+            {
+                Producto prod = (Producto) Carrito.bolsaCompra[i];
+                Carrito.removerProducto(prod.Id, Carrito.bolsaCompra);
+
+                var producto = await _context.Productos.FirstOrDefaultAsync(m => m.Id == prod.Id);
+                producto.Cantidad--;
+                _context.Update(producto);
+                await _context.SaveChangesAsync();
+            }
+
+           //   buscar en la bd la zapatilla que tenga ese talle y ese codProducto y restarle 1 a la cantidad
+               
+                
+
+            
+
+                return RedirectToAction(nameof(Ver));
+        }
+
         public async Task<IActionResult> Remover(int id)
         {
             // Carrito.removeItem(id);
@@ -60,10 +82,7 @@ namespace zapatillas1.Controllers
             return RedirectToAction(nameof(Ver));
         }
 
-        public async Task<IActionResult> Finalizar()
-        {
-            return View();
-        }
+        
 
 
 
