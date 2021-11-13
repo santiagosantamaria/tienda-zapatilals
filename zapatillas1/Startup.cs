@@ -40,7 +40,7 @@ namespace zapatillas1.zapatillas1
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(opciones =>
             {
-                opciones.LoginPath = "/Usuario/Ingresar";
+                opciones.LoginPath = "/Usuario/Login";
                 opciones.AccessDeniedPath = "/Usuario/AccesoDenegado";
                 opciones.LogoutPath = "/Usuario/Salir";
             });

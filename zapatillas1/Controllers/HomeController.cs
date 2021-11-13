@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using zapatillas1.zapatillas1.Models;
 using zapatillas1.zapatillas1.Data;
-
+using Microsoft.AspNetCore.Authorization;
 
 namespace zapatillas1.Controllers
 {
@@ -27,6 +27,7 @@ namespace zapatillas1.Controllers
             return View();
         }
 
+        [Authorize]
         public IActionResult Privacy()
         {
             return View();

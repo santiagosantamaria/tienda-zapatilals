@@ -24,18 +24,18 @@ namespace zapatillas1.Models
             _context = context;
         }
 
-        public IActionResult Ingresar(string returnUrl)
+        public IActionResult Login(string returnUrl)
         {
             TempData["UrlIngreso"] = returnUrl;
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Ingresar(string email, string pass)
+        public async Task<IActionResult> Login(string email, string pass)
         {
             //GUARDAMOS LA URL A LA QUE DEBEMOS REDIGIRIR AL USUARIO
             // var urlIngreso = TempData["UrlIngreso"] as string;
-            var urlIngreso = "Index";
+            var urlIngreso = TempData["Index"] as string;
 
             //Verifivamos que ambos estén informados
             if (!string.IsNullOrEmpty(email) && !string.IsNullOrEmpty(pass))
@@ -113,7 +113,7 @@ namespace zapatillas1.Models
         //     }
 
         // }
-        public IActionResult Login()
+        public IActionResult Registrarse()
         {
             return View();
         }
@@ -129,7 +129,7 @@ namespace zapatillas1.Models
                 usuario.Id_rol = 2;
                 _context.Add(usuario);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Ingresar));
+                return RedirectToAction(nameof(Login));
 
             }
             return View(usuario);
@@ -138,12 +138,14 @@ namespace zapatillas1.Models
         // private int biggestId
 
         // GET: Usuarios
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Usuarios.ToListAsync());
         }
 
         // GET: Usuarios/Details/5
+        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -162,6 +164,7 @@ namespace zapatillas1.Models
         }
 
         // GET: Usuarios/Create
+        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -184,6 +187,7 @@ namespace zapatillas1.Models
         }
 
         // GET: Usuarios/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -204,6 +208,7 @@ namespace zapatillas1.Models
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Edit(int id, [Bind("Id_usuario,Id_rol,Email,Password")] Usuario usuario)
         {
             if (id != usuario.Id_usuario)
@@ -235,6 +240,7 @@ namespace zapatillas1.Models
         }
 
         // GET: Usuarios/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -255,6 +261,7 @@ namespace zapatillas1.Models
         // POST: Usuarios/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var usuario = await _context.Usuarios.FindAsync(id);
