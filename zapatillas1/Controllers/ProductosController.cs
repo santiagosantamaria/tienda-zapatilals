@@ -27,10 +27,6 @@ namespace zapatillas1.Controllers
         public async Task<IActionResult> Index()
         {
 
-
-            //PARA LA VISTA
-            // agrupando por cod_producto para no repetir items
-
             if (Carrito.primeraVez)
             {
 
@@ -38,16 +34,25 @@ namespace zapatillas1.Controllers
                 //recibo una una lista de todos los productos (trae todo el modelo de la db)
                 var productos = await _context.Productos.ToListAsync();
 
-                //agrupo por codigo de producto (pero solo uno para no repetir foto, pues tengo varios productos con mismo codProducto pero dif talle)
-                // Hay un error con el select
-                // No esta enviando Todos los productos del stock a la lista ListaStock
+                Carrito.ListaStock.Clear();
+                Carrito.ListaHomeProductos.Clear();
+
+                //agrupo por codigo de producto (pero solo uno para no repetir foto, 
+                // pues tengo varios productos con mismo codProducto pero dif talle)
+
+                var totalItemesEnStock = _context.Productos.FromSqlRaw("Select Id, Cod_producto, Foto, Cantidad, Talle, Descripcion, Precio, En_stock from Productos where Cantidad > 0").ToList();
                 var productosPorCodigo = productos.Where(p => p.Cantidad > 0).GroupBy(x => x.Cod_producto).Select(g => g.First());
 
-                Carrito.ListaStock.Clear();
-
-                foreach (Producto item in productosPorCodigo)
+                // lista total del stock
+                foreach (Producto item in totalItemesEnStock)
                 {
                     Carrito.ListaStock.Add(item);
+                }
+
+                // lista para el view productos - agrupados por Cod_producto
+                foreach (Producto item in productosPorCodigo)
+                {
+                    Carrito.ListaHomeProductos.Add(item);
                 }
 
                 Carrito.primeraVez = false;
@@ -55,10 +60,10 @@ namespace zapatillas1.Controllers
             }
 
             //mando esta lista filtrada al viewBag. 
-            ViewBag.productosPorCodigo = Carrito.ListaStock;
+            ViewBag.productosPorCodigo = Carrito.ListaHomeProductos;
 
             return View();
-            // return View(await _context.Productos.ToListAsync());
+
         }
 
 

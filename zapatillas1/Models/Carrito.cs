@@ -14,6 +14,7 @@ namespace zapatillas1.zapatillas1.Models
 
         public static ArrayList bolsaCompra = new ArrayList();
         public static ArrayList ListaStock = new ArrayList();
+        public static List<Producto> ListaHomeProductos = new List<Producto>();
         public static Boolean primeraVez = true;
 
         public static void agregarProductoAlCarrito(String codProducto, int talle)
