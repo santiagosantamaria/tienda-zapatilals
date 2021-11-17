@@ -9,7 +9,8 @@ Configurar la ruta propia a la base de datos (eshop.db)
 "DefaultConnection": "filename=/User/dir1/dir2/.../Data/eshop.db"
 
 Ejemplo:
- 
+
+ ```
  {
   "ConnectionStrings": {
     "DefaultConnection": "filename=/User/dir1/dir2/.../Data/eshop.db"
@@ -23,3 +24,4 @@ Ejemplo:
   },
   "AllowedHosts": "*"
 }
+```
