@@ -24,6 +24,7 @@ namespace zapatillas1.zapatillas1.Models
 
             if (producto != null)
             {
+
                 if (producto.Cantidad > 0)
                 {
                     bolsaCompra.Add(producto);
