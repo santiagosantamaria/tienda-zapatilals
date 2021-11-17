@@ -3,10 +3,13 @@ Tienda Zapatillas - Proyecto para la materia Nuevas Tecnologias 1 - ORT
 
  Importante: Para poder cargar la DB (sqlite)
 
-En appsettings.json
+En **appsettings.json**
+
 Configurar la ruta propia a la base de datos (eshop.db)
 
+```
 "DefaultConnection": "filename=/User/dir1/dir2/.../Data/eshop.db"
+```
 
 Ejemplo:
 
