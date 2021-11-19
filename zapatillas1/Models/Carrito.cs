@@ -43,7 +43,7 @@ namespace zapatillas1.zapatillas1.Models
 
             if (producto != null)
             {
-                bolsaCompra.Remove(producto);
+                lista.Remove(producto);
                 producto.Cantidad++;
             }
 
@@ -54,18 +54,20 @@ namespace zapatillas1.zapatillas1.Models
         {
             int i = 0;
             Producto productobuscado = null;
-            while (i < lista.Count && productobuscado == null)
+            Boolean encontrado = false;
+
+            while (i < lista.Count && !encontrado)
             {
                 Producto productoActual = (Producto)lista[i];
 
                 if (productoActual.Cod_producto.Equals(codProducto) && productoActual.Talle == talle)
                 {
                     productobuscado = productoActual;
+                    encontrado = true;
                 }
-                else
-                {
-                    i++;
-                }
+
+                i++;
+
             }
 
             return productobuscado;

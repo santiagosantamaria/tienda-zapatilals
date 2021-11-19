@@ -44,21 +44,19 @@ namespace zapatillas1.Controllers
             return View();
         }
 
+        // probar con ajax        
         public async Task<IActionResult> Finalizar()
         {
-            for (int i = 0; i < Carrito.bolsaCompra.Count; i++)
-            {
-                Producto prod = (Producto)Carrito.bolsaCompra[i];
-                Carrito.removerProducto(prod.Id, Carrito.bolsaCompra);
 
-                var producto = await _context.Productos.FirstOrDefaultAsync(m => m.Id == prod.Id);
-                producto.Cantidad--;
-                _context.Update(producto);
+            foreach (Producto p in Carrito.bolsaCompra)
+            {
+                // ver adonde se esta restando la cantidad
+                _context.Update(p);
                 await _context.SaveChangesAsync();
             }
 
-            //   buscar en la bd la zapatilla que tenga ese talle y ese codProducto y restarle 1 a la cantidad
 
+            Carrito.bolsaCompra.Clear();
             Carrito.primeraVez = true;
 
             return RedirectToAction(nameof(Ver));
