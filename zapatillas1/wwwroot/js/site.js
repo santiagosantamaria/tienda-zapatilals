@@ -12,8 +12,6 @@ document.getElementById('link-agregar').onclick = function () {
     } else {
         var codProducto = document.getElementById("cod-producto").value;
         window.location.href = "/Carrito/Add/" + codProducto + "-" + talle;
-
-        console.log("PROD: "+codProducto + "- TALLE:  " + talle)
     }
         
 };
@@ -25,7 +23,6 @@ $('#talle-zapa').on('change', function() {
     
     // ----- Falta todo ajax que busque la info y la traiga
     // stock del talle va a venir de ajax !! 
-    // total va a venir de ajax y al front end 
     // request ajax and update cantidad-single-item 
     // can cada onChange se va a buscar el id talle y la cantidad en stock de ese id
     // esa cantidad esta en el objeto Producto
