@@ -25,23 +25,6 @@
 
     @foreach (var item in Model)
     {
-        @* <div class="card">
-            <div class="col-md-3 single-product card-body">
-
-            <h4>@Html.DisplayFor(modelItem => item.Descripcion)</h4>
-            <p>Talle @Html.DisplayFor(modelItem => item.Talle)</p>
-            <p>Precio: $@Html.DisplayFor(modelItem => item.Precio)</p>
-            <img src="~/img/@Html.DisplayFor(modelItem => item.Foto)" class="foto-stock">
-
-
-            <br />
-
-            <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
-            <a asp-action="Delete" asp-route-id="@item.Id">Borrar</a>
-
-
-            </div>
-            </div> *@
 
         <div class="card" style="width: 25%;">
             <div class="card-body">

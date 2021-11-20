@@ -61,12 +61,12 @@ namespace zapatillas1.Controllers
 
             Carrito.ListaHomeProductos.Clear();
 
-                foreach(Producto item in Carrito.ListaStock)
+            foreach (Producto item in Carrito.ListaStock)
             {
                 Carrito.ListaHomeProductos.Add(item);
             }
 
-           Carrito.ListaHomeProductos = Carrito.ListaHomeProductos.Where(p => p.Cantidad > 0).GroupBy(x => x.Cod_producto).Select(g => g.First()).ToList();
+            Carrito.ListaHomeProductos = Carrito.ListaHomeProductos.Where(p => p.Cantidad > 0).GroupBy(x => x.Cod_producto).Select(g => g.First()).ToList();
 
             //mando esta lista filtrada al viewBag. 
             ViewBag.productosPorCodigo = Carrito.ListaHomeProductos;
@@ -188,7 +188,8 @@ namespace zapatillas1.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Stock));
+
             }
             return View(producto);
         }

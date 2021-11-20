@@ -25,9 +25,14 @@
             <img src="~/img/@Html.DisplayFor(model => model.Foto)" class="foto-details">
         </div>
         <div class="col-md-6">
+
             <div class="product-data">
                 <h4>@Html.DisplayFor(model => model.Descripcion)</h4>
-                <h3>Precio: $@Html.DisplayFor(model => model.Precio)</h3>
+                <h3>Precio: $ @Html.DisplayFor(model => model.Precio)</h3>
+
+                @* id producto para la busqueda con ajax *@
+                <input type="text" value="@Html.DisplayFor(model => model.Id)" id="id-producto" hidden>
+
             </div>
 
             <div class="talles">
@@ -41,6 +46,30 @@
 
                     }
                 </select>
+                <div class="cant-items-div">
+                    <p>Cantidad en stock:</p>
+                    <p id="cantidad-total-stock-item"></p>
+                </div>
+                <hr>
+                @* cantidades *@
+                <div class="cant-items-div">
+                    @* traer esta cantidad via ajax - para el id y talle *@
+                    <h4>Comprar Cantidad: </h4>
+                    <h5 id="cantidad-compra-item"></h5>
+
+                    <div class="add-to-cart-btn">
+
+                        <button type="button" id="cantidad-sumar" class="btn btn-primary"><i
+                                class="fas fa-plus"></i></button>
+
+                        <button type="button" id="cantidad-restar" class="btn btn-primary"><i
+                                class="fas fa-minus"></i></button>
+                    </div>
+                </div>
+
+                <br />
+
+                <hr>
 
                 <div class="add-to-cart-btn">
                     <a class="btn btn-success btn-white" id="link-agregar">
