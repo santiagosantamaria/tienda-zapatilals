@@ -115,6 +115,28 @@ namespace zapatillas1.Controllers
 
         }
 
+        [HttpGet]
+        public ActionResult Cantidad(string id, string talle, string codp)
+        {
+            // debug
+            // string saludo = "Hola tu id es: " + id + " | talle:  " + talle + " | codigo prod " + codp;
+
+            var talleBuscado = (float)Convert.ToDouble(talle);
+            int cantidad = 0;
+
+            foreach (Producto p in Carrito.ListaStock)
+            {
+                if (p.Cod_producto.Equals(codp) && p.Talle == talleBuscado)
+                {
+                    cantidad = p.Cantidad;
+                }
+            }
+
+            return Json(cantidad);
+
+        }
+
+
 
         // GET: Productos/Create
         [Authorize]

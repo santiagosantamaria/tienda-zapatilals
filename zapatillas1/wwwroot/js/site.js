@@ -1,7 +1,4 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
-
-// Write your JavaScript code.
+﻿
 
 document.getElementById('link-agregar').onclick = function () {
     
@@ -10,7 +7,7 @@ document.getElementById('link-agregar').onclick = function () {
     if(talle == "ingrese-talle") {
         alert("Ingrese un talle");
     } else {
-        var codProducto = document.getElementById("cod-producto").value;
+        let codProducto = document.getElementById("cod-producto").value;
         window.location.href = "/Carrito/Add/" + codProducto + "-" + talle;
     }
         
@@ -19,19 +16,36 @@ document.getElementById('link-agregar').onclick = function () {
 
 $('#talle-zapa').on('change', function() {
     
+    let talle = document.getElementById("talle-zapa").value;
     let idProducto  = document.getElementById('id-producto').value;
+    let codProducto = document.getElementById("cod-producto").value;
     
-    // ----- Falta todo ajax que busque la info y la traiga
-    // stock del talle va a venir de ajax !! 
-    // request ajax and update cantidad-single-item 
-    // can cada onChange se va a buscar el id talle y la cantidad en stock de ese id
-    // esa cantidad esta en el objeto Producto
     
-    let totalStockTalle = 9;
-    document.getElementById('cantidad-total-stock-item').innerHTML = totalStockTalle;
+    $.ajax({
+        type: "GET",
+        url: '/Productos/Cantidad',
+        contentType: "application/json; charset=utf-8",
+        data: { 
+            id: idProducto ,
+            talle: talle ,
+            codp: codProducto ,
+        
+        },
+        dataType: "json",
+        success: function(resp){ 
+            console.log(resp);
+            document.getElementById('cantidad-total-stock-item').innerHTML = resp;
+
+        },
+
+        error: console.log("error")
+    });
     
-    console.log( 'talle: ' + this.value );
-    console.log( 'id: ' +  idProducto );
+    // let totalStockTalle = 9;
+    // document.getElementById('cantidad-total-stock-item').innerHTML = totalStockTalle;
+    
+    // console.log( 'talle: ' + this.value );
+    console.log( 'id desde html: ' +  idProducto );
     
     document.getElementById('cantidad-compra-item').innerHTML = 0;
     
