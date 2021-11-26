@@ -24,18 +24,16 @@ namespace zapatillas1.Controllers
         }
 
 
-
-        public async Task<IActionResult> Add(string id)
+        [HttpGet]
+        public ActionResult Add(string id, string cantidad)
         {
+            string[] data = new string[2] { "este id: " + id, "cantidad: " + cantidad };
+            return Json(data);
 
-            string[] ids = id.Split('-');
+            // restar la cantidad a cantidad de ese producto
+            // guardar la compra
 
-            string codProducto = ids[0];
-            int talle = Int32.Parse(ids[1]);
-
-            Carrito.agregarProductoAlCarrito(codProducto, talle);
-
-            return RedirectToAction(nameof(Ver));
+            // return RedirectToAction(nameof(Ver));
 
         }
 

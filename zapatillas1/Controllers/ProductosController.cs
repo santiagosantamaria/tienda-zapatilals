@@ -123,8 +123,9 @@ namespace zapatillas1.Controllers
 
             var talleBuscado = (float)Convert.ToDouble(talle);
             int cantidad = 0;
+            int idProducto = 0;
             string codProducto = "";
-            
+
 
             foreach (Producto p in Carrito.ListaStock)
             {
@@ -132,12 +133,14 @@ namespace zapatillas1.Controllers
                 {
                     cantidad = p.Cantidad;
                     codProducto = p.Cod_producto;
+                    idProducto = p.Id;
                 }
             }
 
+            string IdProductoString = idProducto.ToString();
             string cantidadString = cantidad.ToString();
 
-            string[] data = new string[2] {cantidadString, codProducto};
+            string[] data = new string[3] { IdProductoString, codProducto, cantidadString };
 
             return Json(data);
 

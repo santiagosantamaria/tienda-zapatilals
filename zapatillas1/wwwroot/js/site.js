@@ -1,18 +1,17 @@
 ﻿
 
-document.getElementById('link-agregar').onclick = function () {
+// document.getElementById('link-agregar').onclick = function () {
     
-    let talle = document.getElementById("talle-zapa").value;
+//     let talle = document.getElementById("talle-zapa").value;
    
-
-    if(talle == "ingrese-talle") {
-        alert("Ingrese un talle");
-    } else {
-        let codProducto = document.getElementById("cod-producto").value;
-        window.location.href = "/Carrito/Add/" + codProducto + "-" + talle;
-    }
+//     if(talle == "ingrese-talle") {
+//         alert("Ingrese un talle");
+//     } else {
+//         let codProducto = document.getElementById("cod-producto").value;
+//         window.location.href = "/Carrito/Add/" + codProducto + "-" + talle;
+//     }
         
-};
+// };
 
 
 $('#talle-zapa').on('change', function() {
@@ -32,17 +31,23 @@ $('#talle-zapa').on('change', function() {
             codp: codProducto ,
         
         },
+
         dataType: "json",
         success: function(resp){ 
             console.log(resp);
-            document.getElementById('cantidad-total-stock-item').innerHTML = resp;
-
-            let stringSelect1 = '<select name="talle-zapa" id="talle - zapa">';
+            var idProducto      = resp[0];
+            var codProducto     = resp[1];
+            var cantidadStock   = resp[2];
+            
+            document.getElementById('id-producto').value = idProducto;
+            // document.getElementById('cantidad-total-stock-item').innerHTML = cantidadStock;
+            
+            let stringSelect1 = '<select name="cant-items" id="cant-items">';
             let stringSelect2 = '';
             let stringSelect3 = '</select>';
             
 
-            for (i = 1; i <= resp; i++) {
+            for (i = 1; i <= cantidadStock; i++) {
                 stringSelect2 += '<option value=' + i + '>' + i + '</option>'
             }
 
@@ -63,26 +68,28 @@ $('#talle-zapa').on('change', function() {
 
     
     document.getElementById('link-agregar').onclick = function () {
+        
+        let idProducto  = document.getElementById('id-producto').value;
+        let cantidadItemsCompra  = document.getElementById('cant-items').value;
 
+        console.log(idProducto);
+        console.log(cantidadItemsCompra);
+        
+        // select para la cantidad = cant-zapadiv
+        // id-producto .value tiene el id
+        
         $.ajax({
             type: "GET",
-            url: '/Productos/Cantidad',
+            url: '/Carrito/Add',
             contentType: "application/json; charset=utf-8",
             data: {
                 id: idProducto,
-                talle: talle,
-                codp: codProducto,
-
+                cantidad: cantidadItemsCompra,
             },
             dataType: "json",
             success: function (resp) {
                 console.log(resp);
-                document.getElementById('cantidad-total-stock-item').innerHTML = resp;
-
-               
-
-
-               
+                // document.getElementById('cantidad-total-stock-item').innerHTML = resp;
             },
 
             error: console.log("error")
