@@ -31,7 +31,7 @@
                 <h3>Precio: $ @Html.DisplayFor(model => model.Precio)</h3>
 
                 @* id producto para la busqueda con ajax *@
-                <input type="text" value="@Html.DisplayFor(model => model.Id)" id="id-producto" hidden>
+                <input type="text" value="@Html.DisplayFor(model => model.Id)" id="id-producto">
 
             </div>
 
@@ -52,20 +52,12 @@
                 </div>
                 <hr>
                 @* cantidades *@
-                <div class="cant-items-div">
-                    @* traer esta cantidad via ajax - para el id y talle *@
-                    <h4>Comprar Cantidad: </h4>
-                    <h5 id="cantidad-compra-item"></h5>
-
-                    <div class="add-to-cart-btn">
-
-                        <button type="button" id="cantidad-sumar" class="btn btn-primary"><i
-                                class="fas fa-plus"></i></button>
-
-                        <button type="button" id="cantidad-restar" class="btn btn-primary"><i
-                                class="fas fa-minus"></i></button>
-                    </div>
+            <div class="cant-items-div">
+                @* traer esta cantidad via ajax - para el id y talle *@
+                <h4>Comprar Cantidad: </h4>
+                <div id="cant-zapadiv">
                 </div>
+            </div>
 
                 <br />
 
