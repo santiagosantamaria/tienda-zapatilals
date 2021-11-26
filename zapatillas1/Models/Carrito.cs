@@ -44,7 +44,8 @@ namespace zapatillas1.zapatillas1.Models
             if (producto != null)
             {
                 lista.Remove(producto);
-                producto.Cantidad++;
+                producto.Cantidad += producto.Cantidad_compra;
+                producto.Cantidad_compra = 0;
             }
 
         }
@@ -116,58 +117,10 @@ namespace zapatillas1.zapatillas1.Models
             float total = 0;
             foreach (Producto item in bolsaCompra)
             {
-                total += item.Precio;
+                total += item.Precio * item.Cantidad_compra;
             }
             return total;
         }
 
     }
 }
-
-/*
-       public static void addItem(int idProducto)
-       {
-           Producto producto = Carrito.buscarProducto(idProducto);
-           if (producto == null)
-           {
-               ListaProductos.Add(producto);
-           }
-       }
-       public static void removeItem(int idProducto)
-       {
-           Producto producto = Carrito.buscarProducto(idProducto);
-
-           if (producto != null)
-           {
-               ListaProductos.Remove(producto);
-           }
-       }
-       public static float getPrecioTotalItems()
-       {
-           float total = 0;
-           foreach (Producto item in ListaProductos)
-           {
-               total += item.Precio;
-           }
-           return total;
-       }
-
-
-       public static Producto buscarProducto(int id)
-       {
-           Producto prodBuscado = null;
-           foreach (Producto item in ListaProductos)
-           {
-               if (item.Id == id)
-               {
-                   prodBuscado = item;
-               }
-           }
-
-           return prodBuscado;
-
-       }
-
-
-
-   }*/

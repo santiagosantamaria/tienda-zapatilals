@@ -10,6 +10,7 @@ namespace zapatillas1.zapatillas1.Models
         public string Cod_producto { get; set; }
         public string Foto { get; set; }
         public int Cantidad { get; set; }
+        public int Cantidad_compra { get; set; }
         public float Talle { get; set; }
         public string Descripcion { get; set; }
         public float Precio { get; set; }

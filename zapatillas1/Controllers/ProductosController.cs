@@ -40,7 +40,7 @@ namespace zapatillas1.Controllers
                 //agrupo por codigo de producto (pero solo uno para no repetir foto, 
                 // pues tengo varios productos con mismo codProducto pero dif talle)
 
-                var totalItemesEnStock = _context.Productos.FromSqlRaw("Select Id, Cod_producto, Foto, Cantidad, Talle, Descripcion, Precio, En_stock from Productos where Cantidad > 0").ToList();
+                var totalItemesEnStock = _context.Productos.FromSqlRaw("Select Id, Cod_producto, Foto, Cantidad, Cantidad_compra, Talle, Descripcion, Precio, En_stock from Productos where Cantidad > 0").ToList();
                 var productosPorCodigo = productos.Where(p => p.Cantidad > 0).GroupBy(x => x.Cod_producto).Select(g => g.First());
 
                 // lista total del stock
@@ -97,7 +97,7 @@ namespace zapatillas1.Controllers
                 return NotFound();
             }
 
-            var totalTalles = _context.Productos.FromSqlRaw("Select Id, Cod_producto, Foto, Cantidad, Talle, Descripcion, Precio, En_stock from Productos where Cantidad > 0 GROUP by Cod_producto,Talle")
+            var totalTalles = _context.Productos.FromSqlRaw("Select Id, Cod_producto, Foto, Cantidad, Cantidad_compra, Talle, Descripcion, Precio, En_stock from Productos where Cantidad > 0 GROUP by Cod_producto,Talle")
             .ToList().Where(p => p.Cod_producto.Equals(codBuscado));
 
             List<Producto> productosPorCodigo = Carrito.buscarProductoPorCodigo(codBuscado);
@@ -161,7 +161,7 @@ namespace zapatillas1.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<IActionResult> Create([Bind("Id,Cod_producto,Foto,Cantidad,Talle,Descripcion,Precio,En_stock")] Producto producto)
+        public async Task<IActionResult> Create([Bind("Id,Cod_producto,Foto,Cantidad,Cantidad_compra,Talle,Descripcion,Precio,En_stock")] Producto producto)
         {
             if (ModelState.IsValid)
             {
@@ -194,7 +194,7 @@ namespace zapatillas1.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Cod_producto,Foto,Cantidad,Talle,Descripcion,Precio,En_stock")] Producto producto)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Cod_producto,Foto,Cantidad,Cantidad_compra,Talle,Descripcion,Precio,En_stock")] Producto producto)
         {
             if (id != producto.Id)
             {

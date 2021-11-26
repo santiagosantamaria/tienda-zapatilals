@@ -28,10 +28,17 @@ namespace zapatillas1.Controllers
         public ActionResult Add(string id, string cantidad)
         {
             string[] data = new string[2] { "este id: " + id, "cantidad: " + cantidad };
-            return Json(data);
 
-            // restar la cantidad a cantidad de ese producto
-            // guardar la compra
+            int prodId = Convert.ToInt32(id);
+            int cantCompra = Convert.ToInt32(cantidad);
+
+            Producto p = Carrito.buscarProducto(prodId, Carrito.ListaStock);
+
+            p.Cantidad -= cantCompra;
+            p.Cantidad_compra += cantCompra;
+            Carrito.bolsaCompra.Add(p);
+
+            return Json(data);
 
             // return RedirectToAction(nameof(Ver));
 
@@ -46,11 +53,16 @@ namespace zapatillas1.Controllers
         public async Task<IActionResult> Finalizar()
         {
 
+            // crear lista de compra y enviar
+
             foreach (Producto p in Carrito.bolsaCompra)
             {
+                p.Cantidad_compra = 0;
                 // ver adonde se esta restando la cantidad
                 _context.Update(p);
                 await _context.SaveChangesAsync();
+                // agregar a venta
+
             }
 
 

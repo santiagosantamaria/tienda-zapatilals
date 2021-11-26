@@ -1,19 +1,5 @@
 ﻿
 
-// document.getElementById('link-agregar').onclick = function () {
-    
-//     let talle = document.getElementById("talle-zapa").value;
-   
-//     if(talle == "ingrese-talle") {
-//         alert("Ingrese un talle");
-//     } else {
-//         let codProducto = document.getElementById("cod-producto").value;
-//         window.location.href = "/Carrito/Add/" + codProducto + "-" + talle;
-//     }
-        
-// };
-
-
 $('#talle-zapa').on('change', function() {
     
     let talle = document.getElementById("talle-zapa").value;
@@ -59,13 +45,7 @@ $('#talle-zapa').on('change', function() {
         error: console.log("error")
     });
     
-    // let totalStockTalle = 9;
-    // document.getElementById('cantidad-total-stock-item').innerHTML = totalStockTalle;
-    
-    // console.log( 'talle: ' + this.value );
     console.log( 'id desde html: ' +  idProducto );
-    
-
     
     document.getElementById('link-agregar').onclick = function () {
         
@@ -89,7 +69,7 @@ $('#talle-zapa').on('change', function() {
             dataType: "json",
             success: function (resp) {
                 console.log(resp);
-                // document.getElementById('cantidad-total-stock-item').innerHTML = resp;
+                window.location.href = "/Carrito/Ver/";
             },
 
             error: console.log("error")

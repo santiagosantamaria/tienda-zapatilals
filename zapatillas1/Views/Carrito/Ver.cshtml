@@ -25,15 +25,16 @@
         @foreach (var item in ViewBag.ListaProductos)
         {
             <div class="bag-item">
-                @item.Cod_producto | @item.Descripcion | $ @item.Precio <a class="btn btn-info"
-                                                                           asp-action="Remover" asp-route-id="@item.Id">X</a>
+                Unidades: @item.Cantidad_compra |
+                @item.Cod_producto | @item.Descripcion | $ @(item.Precio*item.Cantidad_compra) | Talle: @item.Talle
+                <a class="btn btn-info" asp-action="Remover" asp-route-id="@item.Id">X</a>
             </div>
             <br />
         }
 
         <h4>Total : $ @ViewBag.totalPrecio</h4>
 
-        
+
         <a class="btn btn-success" asp-action="Finalizar">
             Finalizar mi
             Compra!
