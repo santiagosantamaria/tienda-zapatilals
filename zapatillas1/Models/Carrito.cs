@@ -17,24 +17,6 @@ namespace zapatillas1.zapatillas1.Models
         public static List<Producto> ListaHomeProductos = new List<Producto>();
         public static Boolean primeraVez = true;
 
-        public static void agregarProductoAlCarrito(String codProducto, int talle)
-        {
-            Producto producto = buscarProducto(codProducto, talle, ListaStock);
-
-
-            if (producto != null)
-            {
-
-                if (producto.Cantidad > 0)
-                {
-                    bolsaCompra.Add(producto);
-
-                    //le resto en el stock una cantidad
-                    producto.Cantidad--;
-                }
-
-            }
-        }
 
 
         public static void removerProducto(int id, ArrayList lista)

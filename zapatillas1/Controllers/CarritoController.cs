@@ -36,7 +36,11 @@ namespace zapatillas1.Controllers
 
             p.Cantidad -= cantCompra;
             p.Cantidad_compra += cantCompra;
-            Carrito.bolsaCompra.Add(p);
+
+            if (Carrito.buscarProducto(prodId, Carrito.bolsaCompra) == null)
+            {
+                Carrito.bolsaCompra.Add(p);
+            }
 
             return Json(data);
 
