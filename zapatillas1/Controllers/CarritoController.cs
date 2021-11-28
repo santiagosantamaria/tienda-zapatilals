@@ -40,8 +40,6 @@ namespace zapatillas1.Controllers
 
             return Json(data);
 
-            // return RedirectToAction(nameof(Ver));
-
         }
 
         public async Task<IActionResult> Ver()
@@ -49,21 +47,27 @@ namespace zapatillas1.Controllers
             return View();
         }
 
-        // probar con ajax        
+
         public async Task<IActionResult> Finalizar()
         {
 
-            // crear lista de compra y enviar
+
+            // agregar a ventas los items de bolsaCompra, 
+            // el string de una compra entera
+            // acumular  cant items, precio, string de compra, guardar en ventas
+            String descVenta = "";
 
             foreach (Producto p in Carrito.bolsaCompra)
             {
+                descVenta += "Codigo: " + p.Cod_producto + " . " + p.Cantidad_compra + " | " + " ";
+
                 p.Cantidad_compra = 0;
-                // ver adonde se esta restando la cantidad
                 _context.Update(p);
                 await _context.SaveChangesAsync();
-                // agregar a venta
 
             }
+
+            // Enviar Info a Ventas
 
 
             Carrito.bolsaCompra.Clear();

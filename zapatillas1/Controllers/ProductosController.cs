@@ -97,6 +97,7 @@ namespace zapatillas1.Controllers
                 return NotFound();
             }
 
+            // Solo para obtener los talles disponibles de un Cod Prod.
             var totalTalles = _context.Productos.FromSqlRaw("Select Id, Cod_producto, Foto, Cantidad, Cantidad_compra, Talle, Descripcion, Precio, En_stock from Productos where Cantidad > 0 GROUP by Cod_producto,Talle")
             .ToList().Where(p => p.Cod_producto.Equals(codBuscado));
 
@@ -118,8 +119,6 @@ namespace zapatillas1.Controllers
         [HttpGet]
         public ActionResult Cantidad(string id, string talle, string codp)
         {
-            // debug
-            // string saludo = "Hola tu id es: " + id + " | talle:  " + talle + " | codigo prod " + codp;
 
             var talleBuscado = (float)Convert.ToDouble(talle);
             int cantidad = 0;
@@ -156,8 +155,7 @@ namespace zapatillas1.Controllers
         }
 
         // POST: Productos/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]

@@ -52,9 +52,6 @@ $('#talle-zapa').on('change', function() {
         let idProducto  = document.getElementById('id-producto').value;
         let cantidadItemsCompra  = document.getElementById('cant-items').value;
 
-        console.log(idProducto);
-        console.log(cantidadItemsCompra);
-        
         // select para la cantidad = cant-zapadiv
         // id-producto .value tiene el id
         
