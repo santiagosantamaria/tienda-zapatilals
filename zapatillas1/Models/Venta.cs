@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace zapatillas1.Models
+namespace zapatillas1.zapatillas1.Models
 {
     public class Venta
     {
