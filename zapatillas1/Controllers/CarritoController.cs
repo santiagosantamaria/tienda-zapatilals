@@ -52,27 +52,37 @@ namespace zapatillas1.Controllers
         }
 
 
-        public async Task<IActionResult> Finalizar()
+        public async Task<IActionResult> Finalizar(String montoTotal)
         {
 
+            // Guarda Venta y VentasXProducto (detalle de una venta)
 
-            // agregar a ventas los items de bolsaCompra, 
-            // el string de una compra entera
-            // acumular  cant items, precio, string de compra, guardar en ventas
-            String descVenta = "";
+            // VENTA
+            Venta venta = new Venta();
+            venta.MontoTotal = Carrito.getPrecioTotalItems();
+            venta.Fecha = DateTime.Now.ToString("dd/MM/yyyy");
+
+            _context.Add(venta);
+            await _context.SaveChangesAsync();
+            int ultimaIdVenta = _context.Ventas.Max(v => v.Id_Venta);
+
+
+            // VENTA Por Producto
 
             foreach (Producto p in Carrito.bolsaCompra)
             {
-                descVenta += "Codigo: " + p.Cod_producto + " . " + p.Cantidad_compra + " | " + " ";
+                VentaXProducto ventaProd = new VentaXProducto();
+                ventaProd.Id_Producto = p.Id;
+                ventaProd.Id_Venta = ultimaIdVenta;
+                ventaProd.Cantidad = p.Cantidad_compra;
+
+                _context.Add(ventaProd);
+                await _context.SaveChangesAsync();
 
                 p.Cantidad_compra = 0;
                 _context.Update(p);
                 await _context.SaveChangesAsync();
-
             }
-
-            // Enviar Info a Ventas
-
 
             Carrito.bolsaCompra.Clear();
             Carrito.primeraVez = true;
@@ -85,9 +95,6 @@ namespace zapatillas1.Controllers
             Carrito.removerProducto(id, Carrito.bolsaCompra);
             return RedirectToAction(nameof(Ver));
         }
-
-
-
 
 
     }

@@ -97,7 +97,7 @@ namespace zapatillas1.zapatillas1.Models
         public static float getPrecioTotalItems()
         {
             float total = 0;
-            foreach (Producto item in bolsaCompra)
+            foreach (Producto item in Carrito.bolsaCompra)
             {
                 total += item.Precio * item.Cantidad_compra;
             }
