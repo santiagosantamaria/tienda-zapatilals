@@ -1,0 +1,55 @@
+﻿@model IEnumerable<zapatillas1.zapatillas1.Models.Venta>
+
+@{
+    ViewData["Title"] = "Historial Ventas";
+
+    int idProd;
+
+}
+
+<h1>Historial de Ventas.</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MontoTotal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fecha)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        
+        <tr>
+            <td>
+                $@Html.DisplayFor(modelItem => item.MontoTotal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fecha)
+            </td>
+            <td>
+                @foreach (var VenProd in ViewBag.VentasXProductos)
+                {
+                    @if (item.Id_Venta == VenProd.Id_Venta)
+                    {
+                        idProd = VenProd.Id_Producto;
+                        @foreach (var p in ViewBag.Productos)
+                        {
+                            if (p.Id == idProd)
+                            {
+                                <p>@p.Descripcion | Cantidad: @VenProd.Cantidad</p>
+                            }
+                        }
+                    }
+                }
+
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
