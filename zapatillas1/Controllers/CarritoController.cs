@@ -87,7 +87,7 @@ namespace zapatillas1.Controllers
             Carrito.bolsaCompra.Clear();
             Carrito.primeraVez = true;
 
-            return RedirectToAction(nameof(Ver));
+            return View("VentaOk");
         }
 
         public async Task<IActionResult> Remover(int id)
