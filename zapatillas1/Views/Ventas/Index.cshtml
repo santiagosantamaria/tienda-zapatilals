@@ -2,8 +2,25 @@
     ViewData["Title"] = "Historial Ventas";
 
 }
+<h3>Buscar Historial por Modelo y Talle: </h3>
+<div class="row">
+    <select name="select-producto-id" id="select-producto-id">
+        <option value="elegi-modelo"> - Elegi el Modelo -</option>
+        @foreach (var item in ViewBag.totalProductos)
+        {
+            <option value="@item.Id"> @item.Cod_producto - Talle: @item.Talle</option>
+        }
+    </select>
+    <br />
+</div>
+<a id="buscar-historial-modelo" class="btn btn-success">Buscar </a>
 
-<h1>Historial de Ventas.</h1>
+<br />
+
+<hr>
+
+<h3>Historial de Ventas</h3>
+<p>(todos los modelos)</p>
 
 
 <table class="table">

@@ -1,5 +1,4 @@
 ﻿
-
 $('#talle-zapa').on('change', function() {
     
     let talle = document.getElementById("talle-zapa").value;
@@ -75,9 +74,15 @@ $('#talle-zapa').on('change', function() {
 
     };
 
-   
-
-
-
 
   });
+
+
+    // buscar historial modelo talle
+
+    document.getElementById('buscar-historial-modelo').onclick = function () {
+        
+        let idProducto  = document.getElementById('select-producto-id').value;
+        window.location.href = "/Ventas/Zapatilla?id="+idProducto;
+        
+    };

@@ -24,6 +24,8 @@ namespace zapatillas1.Controllers
         [Authorize]
         public async Task<IActionResult> Index()
         {
+            var totalProductos = _context.Productos.ToList();
+            ViewBag.totalProductos = totalProductos;
 
             var ItemsVendidos = _context.Ventas.ToList();
             ViewBag.Ventas = ItemsVendidos;
@@ -33,9 +35,9 @@ namespace zapatillas1.Controllers
 
         [Authorize]
         // public async Task<IActionResult> Zapatilla(int prodId)
-        public async Task<IActionResult> Zapatilla()
+        public async Task<IActionResult> Zapatilla(int id)
         {
-            int prodId = 6;
+            int prodId = id;
 
             Producto producto = _context.Productos.Where(p => p.Id == prodId).First();
             ViewBag.Producto = producto;
