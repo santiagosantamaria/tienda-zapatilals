@@ -16,5 +16,7 @@ namespace zapatillas1.zapatillas1.Models
 
         public String Fecha { get; set; }
 
+        public String Descripcion { get; set; }
+
     }
 }

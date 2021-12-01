@@ -24,9 +24,11 @@ namespace zapatillas1.Controllers
         [Authorize]
         public async Task<IActionResult> Index()
         {
-            ViewBag.Productos = _context.Productos.ToArray();
-            ViewBag.VentasXProductos = _context.VentaXProductos.ToArray();
-            return View(await _context.Ventas.ToListAsync());
+
+            var ItemsVendidos = _context.Ventas.ToList();
+            ViewBag.Ventas = ItemsVendidos;
+
+            return View();
         }
     }
 }

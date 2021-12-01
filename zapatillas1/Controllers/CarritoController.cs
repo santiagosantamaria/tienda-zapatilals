@@ -61,6 +61,7 @@ namespace zapatillas1.Controllers
             Venta venta = new Venta();
             venta.MontoTotal = Carrito.getPrecioTotalItems();
             venta.Fecha = DateTime.Now.ToString("dd/MM/yyyy");
+            venta.Descripcion = Carrito.obtenerDescripcionBolsa();
 
             _context.Add(venta);
             await _context.SaveChangesAsync();

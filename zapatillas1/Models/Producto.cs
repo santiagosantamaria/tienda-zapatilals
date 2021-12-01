@@ -16,7 +16,10 @@ namespace zapatillas1.zapatillas1.Models
         public float Precio { get; set; }
         public int En_stock { get; set; }
 
-
+        public string getDesc()
+        {
+            return Descripcion;
+        }
 
     }
 }

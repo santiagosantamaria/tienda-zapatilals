@@ -104,5 +104,17 @@ namespace zapatillas1.zapatillas1.Models
             return total;
         }
 
+        public static string obtenerDescripcionBolsa()
+        {
+            string desc = "";
+
+            foreach (Producto item in Carrito.bolsaCompra)
+            {
+                desc += item.Cantidad_compra + " " + item.Descripcion + " Talle: " + item.Talle + " || ";
+            }
+
+            return desc;
+        }
+
     }
 }
