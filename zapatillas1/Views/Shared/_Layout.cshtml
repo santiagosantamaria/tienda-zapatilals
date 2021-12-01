@@ -29,7 +29,7 @@
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Zapatilals</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse"
-                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex">
@@ -39,12 +39,17 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Productos"
-                               asp-action="Index">Productos</a>
+                                asp-action="Index">Productos</a>
                         </li>
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Productos" asp-action="Stock">Productos Stock</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Productos"
+                                asp-action="Stock">Productos Stock</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Ventas"
+                                asp-action="Index">Historial Ventas</a>
                             </li>
                         }
                     </ul>
@@ -60,7 +65,8 @@
                     <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                         <ul class="navbar-nav flex-grow-1">
                             <li class="nav-item float-right">
-                               @*<a class="nav-link text-success font-italic" asp-area="">@User.FindFirstValue(ClaimTypes.GivenName)</a>*@
+                                @*<a class="nav-link text-success font-italic"
+                                    asp-area="">@User.FindFirstValue(ClaimTypes.GivenName)</a>*@
                             </li>
                             <li class="nav-item float-right">
                                 <form asp-controller="Usuarios" asp-action="Salir" method="post">

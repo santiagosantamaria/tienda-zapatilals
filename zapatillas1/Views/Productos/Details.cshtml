@@ -5,14 +5,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<ul>
-    @* Debug *@
-    @* @foreach (var item in @ViewBag.totalTalles)
-        {
-        <li>@item.Talle</li>
-        <li>@item.Cod_producto</li>
-        } *@
-</ul>
 
 <div class="container">
 
@@ -30,9 +22,7 @@
                 <h4>@Html.DisplayFor(model => model.Descripcion)</h4>
                 <h3>Precio: $ @Html.DisplayFor(model => model.Precio)</h3>
 
-                @* id producto para la busqueda con ajax *@
-                id para el back
-                <input type="text" value="" id="id-producto">
+                <input type="text" value="" id="id-producto" hidden>
 
             </div>
 
