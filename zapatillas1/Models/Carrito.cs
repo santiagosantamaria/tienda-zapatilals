@@ -110,7 +110,7 @@ namespace zapatillas1.zapatillas1.Models
 
             foreach (Producto item in Carrito.bolsaCompra)
             {
-                desc += item.Cantidad_compra + " " + item.Descripcion + " Talle: " + item.Talle + " || ";
+                desc += "Unidades: " + item.Cantidad_compra + " - Modelo: " + item.Descripcion + " Talle: " + item.Talle + " || ";
             }
 
             return desc;

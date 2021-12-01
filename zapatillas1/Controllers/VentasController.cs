@@ -30,5 +30,33 @@ namespace zapatillas1.Controllers
 
             return View();
         }
+
+        [Authorize]
+        // public async Task<IActionResult> Zapatilla(int prodId)
+        public async Task<IActionResult> Zapatilla()
+        {
+            int prodId = 6;
+
+            Producto producto = _context.Productos.Where(p => p.Id == prodId).First();
+            ViewBag.Producto = producto;
+
+            // join ventaXproducto con ventas 
+            var ItemsVendidos = _context.VentaXProductos.Join(
+                _context.Ventas,
+                ventaProd => ventaProd.Id_Venta,
+                venta => venta.Id_Venta,
+                (ventaProd, venta) => new RegistroVenta()
+                {
+                    Id_Producto = ventaProd.Id_Producto,
+                    CantVenta = ventaProd.Cantidad,
+                    Fecha = venta.Fecha,
+
+                }).ToList().Where(v => v.Id_Producto == prodId);
+
+
+            ViewBag.Ventas = ItemsVendidos;
+
+            return View();
+        }
     }
 }

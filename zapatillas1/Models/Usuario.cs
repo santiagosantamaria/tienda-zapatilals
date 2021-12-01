@@ -13,8 +13,6 @@ namespace zapatillas1.zapatillas1.Models
         public string Email { get; set; }
 
         public string Password { get; set; }
-        
-        
 
     }
 }
