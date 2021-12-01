@@ -8,9 +8,9 @@
 <table class="table">
     <thead>
         <tr>
+            <th>Id Producto</th>
             <th>Cant</th>
             <th>Fecha</th>
-            <th>Monto</th>
         </tr>
     </thead>
     <tbody>
@@ -18,14 +18,15 @@
         {
             <tr>
                 <td>
+                    @item.Id_Producto
+                </td>
+                <td>
                     @item.CantVenta
                 </td>
                 <td>
                     @item.Fecha
                 </td>
-                <td>
-                    @item.Id_Producto
-                </td>
+
             </tr>
         }
     </tbody>
