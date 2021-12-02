@@ -54,3 +54,11 @@ ul {
 .cant-items-div {
   margin: 1em;
 }
+
+.btn-historial {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+#buscar-historial-modelo {
+  color: #fff;
+}
